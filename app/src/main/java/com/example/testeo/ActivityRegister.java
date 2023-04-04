@@ -38,7 +38,10 @@ public class ActivityRegister extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityRegister.this, ActivityRegister2.class);
                 try{
-                    registrar();
+                    Usuario user = new Usuario();
+                    registrar(user);
+                    String name= user.getNombre();
+                    intent.putExtra("nombre",name);
                 }
                 catch (Exception e){
                     Log.e("Error en la BD", "Hemos tenido un error "+e.getMessage());
@@ -47,13 +50,13 @@ public class ActivityRegister extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            public void registrar(){
+            public void registrar(Usuario user){
                 Context context = getApplicationContext();
 
 
                 TextView view = null;
                 if(comprobacionPassword()) {
-                    Usuario user = new Usuario();
+
 
                     view = findViewById(R.id.txt_register_name);
                     String name =view.getText().toString() ;

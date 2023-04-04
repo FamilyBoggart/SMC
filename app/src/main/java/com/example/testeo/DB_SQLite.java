@@ -36,7 +36,7 @@ public class DB_SQLite extends SQLiteOpenHelper {
 
 
     @SuppressLint("Range")
-    int getID(String email, String password)
+    public int getID(String email, String password)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         int id=-1;

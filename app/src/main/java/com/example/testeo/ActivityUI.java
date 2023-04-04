@@ -10,14 +10,18 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testeo.Objects.Usuario;
+
 public class ActivityUI extends AppCompatActivity {
 
     int userID=-1;
 
     protected void onCreate(Bundle savedInstanceState) {
+        Usuario user = new Usuario();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui);
         userID=userID();
+        System.out.println(userID);
     }
 
     private int userID(){

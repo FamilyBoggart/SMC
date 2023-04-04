@@ -13,6 +13,7 @@ public class Usuario {
     private String email;
     private String password;
     private List<Coche> coches;
+    private int id;
 
     //Constructores
 
@@ -59,6 +60,9 @@ public class Usuario {
         this.coches = coches;
     }
 
+    private void setId(int id){this.id=id;}
+    public int getId(){return this.id;}
+
     // metodos CRUD para Coches (read = getCoches)
 
     public void agregarCoche(Coche coche) {
@@ -96,13 +100,24 @@ public class Usuario {
 
     public void agregarUsuario(Context context) {
         ContentValues registro = new ContentValues();
-        SQLiteDatabase bd =dB(context);
+        SQLiteDatabase db =dB(context);
 
         registro.put("nombre",this.nombre);
         registro.put("email",this.email);
         registro.put("password",this.password);
 
-        bd.insert("usuarios",null,registro);
-        bd.close();
+        db.insert("usuarios",null,registro);
+        setId(generarID(context,this.email,this.password));
+        db.close();
     }
+
+    private int generarID(Context context,String email,String password){
+
+        DB_SQLite admin = new DB_SQLite(context, "administracion", null, 1);
+        int id= admin.getID(email,password);
+        admin.close();
+        return id;
+    }
+
+
 }

@@ -28,7 +28,13 @@ public class ActivityRegister2 extends AppCompatActivity {
         Button nextButton = findViewById(R.id.register_2_btn_UI);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityRegister2.this, ActivityLogin.class);
+                //Recogemos id
+                Intent intent = getIntent();
+                int id= intent.getIntExtra("id",-1);
+                System.out.println("La id de usuario es "+id);
+
+                intent = new Intent(ActivityRegister2.this, ActivityUI.class);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
