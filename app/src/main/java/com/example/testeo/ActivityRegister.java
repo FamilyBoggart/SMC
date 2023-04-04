@@ -40,8 +40,9 @@ public class ActivityRegister extends AppCompatActivity {
                 try{
                     Usuario user = new Usuario();
                     registrar(user);
-                    String name= user.getNombre();
-                    intent.putExtra("nombre",name);
+                    String nombre= user.getNombre();
+                    System.out.println(nombre);
+                    intent.putExtra("nombre",nombre);
                 }
                 catch (Exception e){
                     Log.e("Error en la BD", "Hemos tenido un error "+e.getMessage());

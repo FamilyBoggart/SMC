@@ -1,6 +1,7 @@
 package com.example.testeo;
 
 import static com.example.testeo.R.id.login_txt_email;
+import static com.example.testeo.R.id.txt_your_name;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,10 +37,10 @@ public class ActivityUI extends AppCompatActivity {
 
         String name=admin.getColumnValue("nombre",userID);
 
-        EditText setName = findViewById(login_txt_email);
+        EditText nombre = findViewById(txt_your_name);
 
-        if(name!=null) setName.setText(name);
-        else setName.setText("Tu nombre");
+        if(name!=null) nombre.setText(name);
+        else nombre.setText("Tu nombre");
     }
 
 

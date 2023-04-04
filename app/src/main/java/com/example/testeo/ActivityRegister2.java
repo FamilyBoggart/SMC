@@ -29,12 +29,13 @@ public class ActivityRegister2 extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Recogemos id
-                Intent intent = getIntent();
-                int id= intent.getIntExtra("id",-1);
-                System.out.println("La id de usuario es "+id);
 
-                intent = new Intent(ActivityRegister2.this, ActivityUI.class);
-                intent.putExtra("id",id);
+                Intent intentData = getIntent();
+                String nombre = intentData.getStringExtra("nombre");
+                System.out.println("El nombre de usuario es "+nombre);
+
+                Intent intent = new Intent(ActivityRegister2.this, ActivityUI.class);
+               // intent.putExtra("nombre",nombre);
                 startActivity(intent);
             }
         });
