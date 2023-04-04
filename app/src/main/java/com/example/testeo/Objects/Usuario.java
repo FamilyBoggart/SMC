@@ -1,7 +1,10 @@
 package com.example.testeo.Objects;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.testeo.DB_SQLite;
 
 import java.util.List;
 
@@ -85,8 +88,21 @@ public class Usuario {
     }
 
     //metodos para acceso a la base de Datos
+    public SQLiteDatabase dB(Context context){
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        return bd;
+    }
 
-    public void agregarUsuario(SQLiteDatabase bd, ContentValues registro) {
+    public void agregarUsuario(Context context) {
+        ContentValues registro = new ContentValues();
+        SQLiteDatabase bd =dB(context);
+
+        registro.put("nombre",this.nombre);
+        registro.put("email",this.email);
+        registro.put("password",this.password);
+
         bd.insert("usuarios",null,registro);
+        bd.close();
     }
 }
