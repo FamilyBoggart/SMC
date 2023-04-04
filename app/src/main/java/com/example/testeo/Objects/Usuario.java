@@ -1,5 +1,8 @@
 package com.example.testeo.Objects;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.List;
 
 public class Usuario {
@@ -8,6 +11,14 @@ public class Usuario {
     private String password;
     private List<Coche> coches;
 
+    //Constructores
+
+    public Usuario(){
+        this.nombre = "";
+        this.email = "";
+        this.password = "";
+        this.coches=null;
+    }
     public Usuario(String nombre, String email, String password, List<Coche> coches) {
         this.nombre = nombre;
         this.email = email;
@@ -16,10 +27,10 @@ public class Usuario {
     }
 
     // Getters y Setters
+
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -27,7 +38,6 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -35,7 +45,6 @@ public class Usuario {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -43,12 +52,11 @@ public class Usuario {
     public List<Coche> getCoches() {
         return coches;
     }
-
     public void setCoches(List<Coche> coches) {
         this.coches = coches;
     }
 
-    // metodos CRUD para Coches
+    // metodos CRUD para Coches (read = getCoches)
 
     public void agregarCoche(Coche coche) {
         this.coches.add(coche);
@@ -74,5 +82,11 @@ public class Usuario {
                 break;
             }
         }
+    }
+
+    //metodos para acceso a la base de Datos
+
+    public void agregarUsuario(SQLiteDatabase bd, ContentValues registro) {
+        bd.insert("usuarios",null,registro);
     }
 }

@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testeo.Objects.Usuario;
+
 public class ActivityRegister extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +55,17 @@ public class ActivityRegister extends AppCompatActivity {
 
                 TextView view = null;
                 if(comprobacionPassword()) {
-                    for (int i = 0; i < 3; i++) {
+                    Usuario user = new Usuario();
 
-                        switch (i) {
-                            case 0:
-                                view = findViewById(R.id.txt_register_name);
-                                registro.put("nombre", view.getText().toString());
-                                break;
-                            case 1:
-                                view = findViewById(R.id.txt_register_mail);
-                                registro.put("email", view.getText().toString());
-                                break;
-                            case 2:
-                                view = findViewById(R.id.txt_register_password);
-                                registro.put("password", view.getText().toString());
-                                break;
-                        }
-                    }
+                    view = findViewById(R.id.txt_register_name);
+                    registro.put("nombre", view.getText().toString());
+
+                    view = findViewById(R.id.txt_register_mail);
+                    registro.put("email", view.getText().toString());
+
+                    view = findViewById(R.id.txt_register_password);
+                    registro.put("password", view.getText().toString());
+
                     bd.insert("usuarios",null,registro);
                     System.out.println("Registro creado exitosamente");
                 }
@@ -83,7 +79,6 @@ public class ActivityRegister extends AppCompatActivity {
                 String password = view.getText().toString();
                 view=findViewById(R.id.txt_register_confirm_password);
                 String confirmPassword=view.getText().toString();
-
                 return password.equals(confirmPassword);
             }
 
