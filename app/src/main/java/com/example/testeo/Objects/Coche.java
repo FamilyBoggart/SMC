@@ -6,20 +6,20 @@ public class Coche {
         private String marca;
         private String modelo;
         private String matricula;
-        private int anioMatriculacion;
+        private int year_matriculacion;
         private int km;
         private List<Componente> componentes;
 
-        public Coche(String marca, String modelo, String matricula, int anioMatriculacion, int km, List<Componente> componentes) {
+        public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km, List<Componente> componentes) {
             this.marca = marca;
             this.modelo = modelo;
             this.matricula = matricula;
-            this.anioMatriculacion = anioMatriculacion;
+            this.year_matriculacion = year_matriculacion;
             this.km = km;
             this.componentes = componentes;
         }
 
-        // Métodos getters y setters para cada atributo
+        // Getters & Setters
         public String getMarca() {
             return marca;
         }
@@ -44,12 +44,12 @@ public class Coche {
             this.matricula = matricula;
         }
 
-        public int getAnioMatriculacion() {
-            return anioMatriculacion;
+        public int getYear_matriculacion() {
+            return year_matriculacion;
         }
 
-        public void setAnioMatriculacion(int anioMatriculacion) {
-            this.anioMatriculacion = anioMatriculacion;
+        public void setYear_matriculacion(int year_matriculacion) {
+            this.year_matriculacion = year_matriculacion;
         }
 
         public double getKm() {
@@ -66,6 +66,16 @@ public class Coche {
 
         public void setComponentes(List<Componente> componentes) {
             this.componentes = componentes;
+        }
+
+        //Metodos CRUD de componentes
+        public void editarComponente(Componente componente) {
+            for (int i = 0; i < componentes.size(); i++) {
+                if (componentes.get(i).getNombre().equals(componente.getNombre())) {
+                    componentes.set(i, componente);
+                    break;
+                }
+            }
         }
     }
 
