@@ -368,7 +368,7 @@
 
                         <TextView
                             android:id="@+id/suspension_nombre"
-                            android:layout_width="0dp"
+                            android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Suspensión" />
@@ -380,27 +380,21 @@
                             android:layout_weight="1"
                             android:text="80,000" />
 
-                        <FrameLayout
-                            android:id="@+id/suspension_actual_container"
+                        <TextView
+                            android:id="@+id/suspension_actual"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:text="78,000"
+                            android:visibility="visible" />
 
-                            <TextView
-                                android:id="@+id/suspension_actual"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="78,000"
-                                android:visibility="visible" />
-
-                            <EditText
-                                android:id="@+id/suspension_actual_input"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:visibility="gone" />
-
-                        </FrameLayout>
+                        <EditText
+                            android:id="@+id/suspension_actual_input"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:visibility="gone" />
 
                         <Button
                             android:id="@+id/suspension_editar"
@@ -410,18 +404,8 @@
 
                     </LinearLayout>
 
-
-
-                    <!-- Agrega más elementos con botones de edición aquí -->
-
                 </LinearLayout>
             </ScrollView>
-
-
-
-
-
-
     </FrameLayout>
     <Button
         android:id="@+id/edit_component_btn_next"
@@ -430,7 +414,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#E69C79"
-        android:text="@string/back_to_UI"
+        android:text="@string/back_to_car"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />

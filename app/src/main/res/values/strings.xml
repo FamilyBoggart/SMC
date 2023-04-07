@@ -2,15 +2,21 @@
     <string name="app_name">SupportMyCar</string>
     <string name="btn_login">Login</string>
     <string name="btn_register">Registrate</string>
+
     <string name="txt_welcome">Bienvenido a SMC</string>
     <string name="user_success">Usuario creado correctamente</string>
-    <string name="btn_add_car">Añadir coche</string>
-    <string name="txt_edit_component">Personalizar componentes</string>
     <string name="add_car_request">Necesitamos añadir el coche que usas</string>
+
+
     <string name="back_to_UI">Volver a inicio</string>
+    <string name="back_to_car">Volver al coche</string>
+
     <string name="txt_not_now">Ahora no</string>
     <string name="next">Siguiente</string>
     <string name="back">Atras</string>
+
     <string name="my_cars">Mis coches</string>
-    <string name="actualizar">Actualizar datos</string>
+    <string name="edit_car">Editar coche</string>
+    <string name="btn_add_car">Añadir coche</string>
+    <string name="txt_edit_component">Personalizar componentes</string>
 </resources>
