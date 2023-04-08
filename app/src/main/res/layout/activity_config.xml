@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBE3B3">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/txt_your_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/configuration"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintToptoTopOf="match_parent" />
+
+
+            <Button
+                android:id="@+id/ui_btn_my_cars"
+                android:layout_width="136dp"
+                android:layout_height="52dp"
+                android:backgroundTint="#E69C79"
+                android:text="@string/back_to_UI"
+                android:textColor="#000000"
+
+                app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                tools:layout_editor_absoluteX="137dp" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="75dp" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="365dp"
+                android:layout_height="541dp"
+                android:background="@color/orange_200"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="164dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/iconColumn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Botón 1" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Botón 2" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/verticalLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="16dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Elemento 1" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Elemento 2" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- Columna de iconos a la izquierda -->
+
+
+                <!-- Columna de elementos a la derecha -->
+
+
+            </FrameLayout>
+
+
+            <ImageButton
+                android:id="@+id/ui_btn_config"
+                android:layout_width="54dp"
+                android:layout_height="40dp"
+                android:background="@color/yellow_500"
+                android:visibility="gone"
+                app:srcCompat="@android:drawable/ic_menu_preferences"
+
+                app:tint="@color/black" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

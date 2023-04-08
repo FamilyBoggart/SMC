@@ -21,13 +21,16 @@
     <string name="txt_edit_component">Personalizar componentes</string>
 
 
-    <!-- CAR PROPERTIES-->
+    <!-- CAR PROPERTIES         -->
     <string name="Car">Coche:</string>
     <string name="Matricula">Matricula:</string>
     <string name="Nearest_ITV">Proxima ITV:</string>
     <string name="actual_km">Km actual:</string>
     <string name="recomended_km">Km recomendados:</string>
 
-    <!-- COMPONENT PROPERTIES -->
+    <!-- COMPONENT PROPERTIES   -->
     <string name="component">Componente:</string>
+
+    <!--  CONFIGURATION         -->
+    <string name="configuration">Configuracion</string>
 </resources>

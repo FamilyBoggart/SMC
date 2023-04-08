@@ -407,16 +407,17 @@
                 </LinearLayout>
             </ScrollView>
     </FrameLayout>
+
     <Button
         android:id="@+id/edit_component_btn_next"
         android:layout_width="136dp"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
         android:backgroundTint="#E69C79"
-        android:text="@string/back_to_car"
+        android:text="@string/back_to_UI"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
 
