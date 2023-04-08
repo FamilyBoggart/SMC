@@ -19,4 +19,15 @@
     <string name="edit_car">Editar coche</string>
     <string name="btn_add_car">Añadir coche</string>
     <string name="txt_edit_component">Personalizar componentes</string>
+
+
+    <!-- CAR PROPERTIES-->
+    <string name="Car">Coche:</string>
+    <string name="Matricula">Matricula:</string>
+    <string name="Nearest_ITV">Proxima ITV:</string>
+    <string name="actual_km">Km actual:</string>
+    <string name="recomended_km">Km recomendados:</string>
+
+    <!-- COMPONENT PROPERTIES -->
+    <string name="component">Componente:</string>
 </resources>
