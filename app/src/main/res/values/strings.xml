@@ -33,4 +33,8 @@
 
     <!--  CONFIGURATION         -->
     <string name="configuration">Configuracion</string>
+    <string name="user">USUARIO</string>
+    <string name="interface_">INFERFAZ</string>
+    <string name="notifications">NOTIFICACIONES</string>
+    <string name="language">IDIOMA</string>
 </resources>
