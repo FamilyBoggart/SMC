@@ -37,4 +37,14 @@
     <string name="interface_">INFERFAZ</string>
     <string name="notifications">NOTIFICACIONES</string>
     <string name="language">IDIOMA</string>
+    <string name="edit">EDITAR</string>
+    <string name="spanish">ESPAÑOL</string>
+    <string name="english">INGLES</string>
+    <string name="theme">TEMA</string>
+    <string name="light">CLARO</string>
+    <string name="dark">OSCURO</string>
+    <string name="emit_in">EMITIR CADA</string>
+    <string name="days">DIAS</string>
+    <string name="activate_in">ACTIVAR AL</string>
+    <string name="km_o_rev">KM PARA REVISION</string>
 </resources>
