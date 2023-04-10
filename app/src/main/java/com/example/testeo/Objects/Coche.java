@@ -1,8 +1,9 @@
 package com.example.testeo.Objects;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Coche {
+public class Coche implements Serializable {
         private String marca;
         private String modelo;
         private String matricula;

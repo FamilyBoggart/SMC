@@ -1,8 +1,9 @@
 package com.example.testeo.Objects;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Componente {
+public class Componente implements Serializable {
     private int km;
     private LocalDateTime fechaRevision;
     private String nombre;

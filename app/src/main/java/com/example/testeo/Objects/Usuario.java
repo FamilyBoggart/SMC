@@ -6,9 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.testeo.DB_SQLite;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String nombre;
     private String email;
     private String password;
@@ -92,30 +93,26 @@ public class Usuario {
     }
 
     //metodos para acceso a la base de Datos
-    public SQLiteDatabase dB(Context context){
-        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
-        SQLiteDatabase bd = admin.getWritableDatabase();
-        return bd;
-    }
+
 
     public void agregarUsuario(Context context) {
         ContentValues registro = new ContentValues();
-        SQLiteDatabase db =dB(context);
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
 
         registro.put("nombre",this.nombre);
         registro.put("email",this.email);
         registro.put("password",this.password);
 
         db.insert("usuarios",null,registro);
-        setId(generarID(context,this.email,this.password));
+        this.setId(generarID(admin,this.email,this.password));
         db.close();
     }
 
-    private int generarID(Context context,String email,String password){
+    private int generarID(DB_SQLite db,String email,String password){
 
-        DB_SQLite admin = new DB_SQLite(context, "administracion", null, 1);
-        int id= admin.getID(email,password);
-        admin.close();
+        int id= db.getID(email,password);
+        db.close();
         return id;
     }
 
