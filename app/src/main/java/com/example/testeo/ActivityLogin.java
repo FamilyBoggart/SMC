@@ -43,7 +43,7 @@ public class ActivityLogin extends AppCompatActivity {
 
                 if(user.getId() != -1) {
                     Intent intent = new Intent(ActivityLogin.this, ActivityUI.class);
-
+                    intent.putExtra("objUser",user);
                     startActivity(intent);
                 }
                 else {

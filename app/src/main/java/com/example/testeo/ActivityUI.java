@@ -1,13 +1,9 @@
 package com.example.testeo;
 
-import static com.example.testeo.R.id.login_txt_email;
-import static com.example.testeo.R.id.txt_your_name;
-
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,14 +11,19 @@ import com.example.testeo.Objects.Usuario;
 
 public class ActivityUI extends AppCompatActivity {
 
-    int userID=-1;
 
     protected void onCreate(Bundle savedInstanceState) {
-        Usuario user = new Usuario();
+
+        Intent intent=getIntent();
+        Usuario user = (Usuario) intent.getSerializableExtra("objUser");
+        System.out.println(user.getNombre());
+        System.out.println(user.getEmail());
+
+        setName(user.getNombre());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui);
-        userID=userID();
-        System.out.println(userID);
+
     }
 
     private int userID(){
@@ -31,16 +32,14 @@ public class ActivityUI extends AppCompatActivity {
         return userId;
 
     }
-    protected void setName(){
-        Context context = getApplicationContext();
-        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+    private void setName(String name){
 
-        String name=admin.getColumnValue("nombre",userID);
-
-        EditText nombre = findViewById(txt_your_name);
-
-        if(name!=null) nombre.setText(name);
-        else nombre.setText("Tu nombre");
+       TextView nombre = findViewById(R.id.txt_name_yours);
+    try{
+        nombre.setText((CharSequence) name);}
+    catch(Exception e){
+        Log.e("Error: ",e.getMessage());
+    }
     }
 
 
