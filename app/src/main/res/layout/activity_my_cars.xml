@@ -152,11 +152,11 @@
                                     <TextView
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
-                                        android:text="<Marca> " />
+                                        android:text="_Marca " />
                                     <TextView
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
-                                        android:text="<Modelo> " />
+                                        android:text="Modelo " />
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
 
-                                        android:text="<Matricula> " />
+                                        android:text="Matricula " />
 
                                 </LinearLayout>
                                 <LinearLayout
@@ -189,7 +189,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
 
-                                        android:text="<Km> " />
+                                        android:text="Km " />
 
                                 </LinearLayout>
                                 <LinearLayout
@@ -206,7 +206,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
 
-                                        android:text="<Fecha ITV> " />
+                                        android:text="Fecha ITV " />
 
                                 </LinearLayout>
                             </LinearLayout>
