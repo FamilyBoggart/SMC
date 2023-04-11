@@ -15,12 +15,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.testeo.Objects.Usuario;
+
 public class ActivityLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
 
         //Boton para ir a registro
@@ -36,28 +39,33 @@ public class ActivityLogin extends AppCompatActivity {
         Button loginButton = findViewById(login_btn_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int id= login();
-                if(id != -1) {
+                Usuario user= login();
+
+                if(user.getId() != -1) {
                     Intent intent = new Intent(ActivityLogin.this, ActivityUI.class);
-                    intent.putExtra("id",id);
+
                     startActivity(intent);
                 }
                 else {
                     errorLogin();
                 }
             }
-            private int login() {
+            private Usuario login() {
                 EditText emailView = findViewById(R.id.login_txt_email);
                 String email = emailView.getText().toString();
 
                 EditText passwordView = findViewById(R.id.login_txt_password);
                 String password = passwordView.getText().toString();
 
+                //Obtenemos la id
                 Context context = getApplicationContext();
-                DB_SQLite admin = new DB_SQLite(context, "administracion", null, 1);
+                Usuario user = new Usuario(email,password);
 
-                int id = admin.getID(email, password);
-                return id;
+
+                //Trabajamos con la id
+                user.generateDataById(context);
+
+                return user;
             }
             private void errorLogin(){
                 View txt_error = findViewById(R.id.login_txt_error);

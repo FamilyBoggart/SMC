@@ -24,17 +24,18 @@ public class Usuario implements Serializable {
         this.password = "";
         this.coches=null;
     }
-    public Usuario(String nombre, String email, String password, List<Coche> coches) {
-        this.nombre = nombre;
+    public Usuario(String email, String password) {
+        this.nombre = "";
         this.email = email;
         this.password = password;
-        this.coches = coches;
+        this.coches = null;
     }
 
     // Getters y Setters
 
     public String getNombre() {
-        return nombre;
+
+        return this.nombre;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -62,7 +63,8 @@ public class Usuario implements Serializable {
     }
 
     private void setId(int id){this.id=id;}
-    public int getId(){return this.id;}
+    public int getId(){
+        return this.id;}
 
     // metodos CRUD para Coches (read = getCoches)
 
@@ -116,5 +118,15 @@ public class Usuario implements Serializable {
         return id;
     }
 
+    public void generateDataById(Context context){
 
+        //Encontramos la id
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        setId(generarID(admin,this.email,this.password));
+        this.setNombre(admin.getColumnValue("nombre",this.id));
+            //Falta añadir los coches
+        admin.close();
+
+
+    }
 }
