@@ -24,6 +24,8 @@
     <!-- CAR PROPERTIES         -->
     <string name="Car">Coche:</string>
     <string name="Matricula">Matricula:</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
     <string name="Nearest_ITV">Proxima ITV:</string>
     <string name="actual_km">Km actual:</string>
     <string name="recomended_km">Km recomendados:</string>

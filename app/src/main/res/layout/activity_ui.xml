@@ -128,12 +128,12 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="0.5"
-                                        android:text="<Marca> " />
+                                        android:text="@string/marca" />
                                     <TextView
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="0.5"
-                                        android:text="<Modelo> " />
+                                        android:text="@string/modelo" />
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="<Matricula>" />
+                                        android:text="@string/Matricula" />
 
                                 </LinearLayout>
                                 <LinearLayout
@@ -168,7 +168,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="<Componente>" />
+                                        android:text="@string/component" />
 
                                 </LinearLayout>
                                 <LinearLayout
@@ -186,7 +186,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="<km Actuales>" />
+                                        android:text="@string/actual_km" />
 
                                 </LinearLayout>
                                 <LinearLayout
@@ -204,7 +204,7 @@
                                         android:layout_width="80dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="<Km>" />
+                                        android:text="@string/recomended_km" />
 
                                 </LinearLayout>
 
