@@ -45,10 +45,23 @@ public class ActivityAddCar extends AppCompatActivity {
         Button nextButton = findViewById(add_car_btn_next);
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+
+                // Registrar el coche y asignarlo al usuario
+                /*      PROBAR CUANDO FUNCIONE LA INTERFAZ DE MUESTRA
+
+                Coche car=addCar();
+                user.agregarCoche(car);
+                */
+
+
+
+
+                // Division por el switch
                 Switch component = findViewById(switch1);
                 if(component.isChecked()){
                     Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
                     intent.putExtra("objUser",user);
+                    //intent.putExtra("objCar",car);
                     startActivity(intent);}
                 else{
                     Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
