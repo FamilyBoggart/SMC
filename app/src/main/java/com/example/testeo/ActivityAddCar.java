@@ -47,11 +47,13 @@ public class ActivityAddCar extends AppCompatActivity {
             public void onClick(View v) {
                 Switch component = findViewById(switch1);
                 if(component.isChecked()){
-                    Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
+                    Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
                     intent.putExtra("objUser",user);
                     startActivity(intent);}
                 else{
-
+                    Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
+                    intent.putExtra("objUser",user);
+                    startActivity(intent);
                 }
             }
         });

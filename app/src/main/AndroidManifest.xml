@@ -36,6 +36,7 @@
         <activity android:name=".ActivityUI"></activity>
         <activity android:name=".ActivityAddCar"></activity>
         <activity android:name=".ActivityMyCars"></activity>
+        <activity android:name=".ActivityAddComponent"></activity>
     </application>
 
 </manifest>
