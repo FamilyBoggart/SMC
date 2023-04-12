@@ -35,7 +35,8 @@ public class Coche implements Serializable {
             this.km = 0;
             this.componentes = null;
     }
-        // Getters & Setters
+        public Coche(){}
+    // Getters & Setters
         public String getMarca() {
             return marca;
         }

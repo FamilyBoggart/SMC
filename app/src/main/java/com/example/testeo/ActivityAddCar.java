@@ -2,15 +2,24 @@ package com.example.testeo;
 
 import static com.example.testeo.R.id.add_car_btn_back;
 import static com.example.testeo.R.id.add_car_btn_next;
+import static com.example.testeo.R.id.add_car_txt_km;
+import static com.example.testeo.R.id.add_car_txt_marca;
+import static com.example.testeo.R.id.add_car_txt_matricula;
+import static com.example.testeo.R.id.add_car_txt_modelo;
+import static com.example.testeo.R.id.add_car_txt_year_mat;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testeo.Objects.Coche;
 import com.example.testeo.Objects.Usuario;
 
 public class ActivityAddCar extends AppCompatActivity {
@@ -39,8 +48,32 @@ public class ActivityAddCar extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    public Coche addCar(){
+        Coche car = new Coche();
+        Context context = getApplicationContext();
+        EditText view = null;
 
+        view = findViewById(add_car_txt_marca);
+        String marca =view.getText().toString();
+        car.setMarca(marca);
 
+        view = findViewById(add_car_txt_modelo);
+        String modelo =view.getText().toString();
+        car.setModelo(modelo);
+
+        view = findViewById(add_car_txt_matricula);
+        String matricula =view.getText().toString();
+        car.setMatricula(matricula);
+
+        view = findViewById(add_car_txt_year_mat);
+        String year =view.getText().toString();
+        car.setYear_matriculacion(Integer.parseInt(year));
+
+        view = findViewById(add_car_txt_km);
+        String km =view.getText().toString();
+        car.setKm(Integer.parseInt(km));
+        return car;
     }
 }
