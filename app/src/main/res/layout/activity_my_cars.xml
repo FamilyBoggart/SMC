@@ -52,20 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/ui_btn_my_cars"
-                android:layout_width="136dp"
-                android:layout_height="52dp"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="#E69C79"
-                android:text="@string/edit_car"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-                app:layout_constraintEnd_toStartOf="@+id/ui_btn_actualizar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <Button
-                android:id="@+id/ui_btn_my_cars2"
+                android:id="@+id/mycars_btn_add_car"
                 android:layout_width="136dp"
                 android:layout_height="52dp"
                 android:layout_marginEnd="10dp"
@@ -73,12 +60,12 @@
                 android:text="@string/btn_add_car"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-                app:layout_constraintEnd_toStartOf="@+id/ui_btn_actualizar"
+                app:layout_constraintEnd_toStartOf="@+id/mycars_btn_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <Button
-                android:id="@+id/ui_btn_actualizar"
+                android:id="@+id/mycars_btn_back"
                 android:layout_width="136dp"
                 android:layout_height="52dp"
                 android:layout_marginEnd="24dp"
