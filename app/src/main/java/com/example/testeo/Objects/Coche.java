@@ -11,15 +11,30 @@ public class Coche implements Serializable {
         private int km;
         private List<Componente> componentes;
 
-        public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km, List<Componente> componentes) {
+        public Coche(String marca, String modelo, String matricula, int km, int year_matriculacion) {
             this.marca = marca;
             this.modelo = modelo;
             this.matricula = matricula;
             this.year_matriculacion = year_matriculacion;
             this.km = km;
-            this.componentes = componentes;
+            this.componentes = null;
         }
-
+        public Coche(String marca, String modelo, String matricula, int km) {
+            this.marca = marca;
+            this.modelo = modelo;
+            this.matricula = matricula;
+            this.year_matriculacion = 2023;
+            this.km = km;
+            this.componentes = null;
+    }
+        public Coche(String marca, String modelo, String matricula) {
+            this.marca = marca;
+            this.modelo = modelo;
+            this.matricula = matricula;
+            this.year_matriculacion = 2023;
+            this.km = 0;
+            this.componentes = null;
+    }
         // Getters & Setters
         public String getMarca() {
             return marca;
