@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/><!-- Permiso para poder usar el JDBC-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:usesCleartextTraffic="true"
@@ -33,6 +35,7 @@
         <activity android:name=".ActivityRegister2"></activity>
         <activity android:name=".ActivityUI"></activity>
         <activity android:name=".ActivityAddCar"></activity>
+        <activity android:name=".ActivityMyCars"></activity>
     </application>
 
 </manifest>
