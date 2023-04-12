@@ -8,6 +8,7 @@ import static com.example.testeo.R.id.add_car_txt_matricula;
 import static com.example.testeo.R.id.add_car_txt_modelo;
 import static com.example.testeo.R.id.add_car_txt_year_mat;
 import static com.example.testeo.R.id.mycars_btn_add_car;
+import static com.example.testeo.R.id.switch1;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,9 +45,14 @@ public class ActivityAddCar extends AppCompatActivity {
         Button nextButton = findViewById(add_car_btn_next);
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
-                intent.putExtra("objUser",user);
-                startActivity(intent);
+                Switch component = findViewById(switch1);
+                if(component.isChecked()){
+                    Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
+                    intent.putExtra("objUser",user);
+                    startActivity(intent);}
+                else{
+
+                }
             }
         });
     }
