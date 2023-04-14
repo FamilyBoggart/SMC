@@ -1,6 +1,7 @@
 package com.example.testeo.Objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coche implements Serializable {
@@ -18,7 +19,7 @@ public class Coche implements Serializable {
             this.matricula = matricula;
             this.year_matriculacion = year_matriculacion;
             this.km = km;
-            this.componentes = null;
+            this.componentes = new ArrayList<Componente>();
         }
         public Coche(String marca, String modelo, String matricula, int km) {
             this.marca = marca;
@@ -26,7 +27,7 @@ public class Coche implements Serializable {
             this.matricula = matricula;
             this.year_matriculacion = 2023;
             this.km = km;
-            this.componentes = null;
+            this.componentes = new ArrayList<Componente>();
     }
         public Coche(String marca, String modelo, String matricula) {
             this.marca = marca;
@@ -34,7 +35,7 @@ public class Coche implements Serializable {
             this.matricula = matricula;
             this.year_matriculacion = 2023;
             this.km = 0;
-            this.componentes = null;
+            this.componentes = new ArrayList<Componente>();
     }
 
     // Getters & Setters
