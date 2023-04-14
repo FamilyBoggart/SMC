@@ -13,6 +13,7 @@ import static com.example.testeo.R.id.switch1;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,12 +47,12 @@ public class ActivityAddCar extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                // Registrar el coche y asignarlo al usuario
-                /*      PROBAR CUANDO FUNCIONE LA INTERFAZ DE MUESTRA
-
+               //Agregamos un coche al usuario asignado
                 Coche car=addCar();
                 user.agregarCoche(car);
-                */
+
+
+
 
 
 
