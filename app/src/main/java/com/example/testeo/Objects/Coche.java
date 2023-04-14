@@ -11,6 +11,7 @@ public class Coche implements Serializable {
         private int km;
         private List<Componente> componentes;
 
+    public Coche(){}
         public Coche(String marca, String modelo, String matricula, int km, int year_matriculacion) {
             this.marca = marca;
             this.modelo = modelo;
@@ -35,7 +36,7 @@ public class Coche implements Serializable {
             this.km = 0;
             this.componentes = null;
     }
-        public Coche(){}
+
     // Getters & Setters
         public String getMarca() {
             return marca;
@@ -85,6 +86,10 @@ public class Coche implements Serializable {
             this.componentes = componentes;
         }
 
+        //Metodos para la ITV
+    public int getITV(){
+            return year_matriculacion+4;
+    }
         //Metodos CRUD de componentes
         public void editarComponente(Componente componente) {
             for (int i = 0; i < componentes.size(); i++) {
