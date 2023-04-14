@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.testeo.DB_SQLite;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario implements Serializable {
@@ -22,13 +23,13 @@ public class Usuario implements Serializable {
         this.nombre = "";
         this.email = "";
         this.password = "";
-        this.coches=null;
+        this.coches=new ArrayList<Coche>();
     }
     public Usuario(String email, String password) {
         this.nombre = "";
         this.email = email;
         this.password = password;
-        this.coches = null;
+        this.coches = new ArrayList<Coche>();
     }
 
     // Getters y Setters
@@ -56,11 +57,9 @@ public class Usuario implements Serializable {
     }
 
     public List<Coche> getCoches() {
-        return coches;
+        return this.coches;
     }
-    public void setCoches(List<Coche> coches) {
-        this.coches = coches;
-    }
+
 
     private void setId(int id){this.id=id;}
     public int getId(){
@@ -129,4 +128,6 @@ public class Usuario implements Serializable {
 
 
     }
+
+
 }

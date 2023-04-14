@@ -98,6 +98,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
+                <TextView
+                    android:id="@+id/noCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sin coches actualmente"
+                    android:layout_gravity="center"
+                    android:visibility="visible"></TextView>
+
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -109,7 +117,6 @@
                         android:orientation="vertical"
                         android:visibility="gone">
 
-
                         <!--    Car Code    -->
                         <View
                             android:id="@+id/divider_car"
@@ -120,6 +127,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+
                             android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -132,6 +140,7 @@
                                     android:orientation="horizontal">
 
                                     <TextView
+
                                         android:layout_width="100dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -209,103 +218,7 @@
 
                         </LinearLayout>
                         <!--    END Car Code    -->
-                        <View
-                            android:id="@+id/divider_car"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="?android:attr/listDivider"
-                            tools:ignore="DuplicateIds" />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
 
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="Coche: "
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="_Marca " />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="Modelo " />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:text="Matricula: " />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Matricula " />
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:text="Km Actual: " />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Km " />
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:text="Proxima ITV " />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-
-                                        android:text="Fecha ITV " />
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/yellow_500"
-                                android:layout_gravity="center"
-                                android:text="Editar" />
-
-                        </LinearLayout>
 
 
                     </LinearLayout>
