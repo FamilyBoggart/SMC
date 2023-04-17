@@ -1,17 +1,18 @@
 package com.example.testeo;
 
-import static com.example.testeo.R.id.carContainer;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 import static com.example.testeo.R.id.mycars_btn_back;
 import static com.example.testeo.R.id.noCars;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,8 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.testeo.Objects.Coche;
 import com.example.testeo.Objects.Usuario;
 
+import org.xmlpull.v1.XmlPullParser;
+
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ActivityMyCars extends AppCompatActivity {
 
@@ -70,31 +72,70 @@ public class ActivityMyCars extends AppCompatActivity {
         else{
             TextView noCar = findViewById(noCars);
             noCar.setVisibility(View.GONE);
-            LinearLayout carContainer = findViewById(R.id.carContainer);
-            carContainer.setVisibility(View.VISIBLE);
             eachCar(cars);
         }
 
 
     }
+
     private void eachCar(List<Coche> cars){
         LinearLayout carContainer = findViewById(R.id.carContainer);
 
+        carContainer.setVisibility(View.VISIBLE);
+        carContainer.removeAllViews();
+
         for (Coche coche : cars) {
-            String codigoXML = generarCodigoXML(coche);
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View cocheView = inflater.inflate(R.layout.car_layout, null);
 
-
-            carContainer.removeAllViews(); // Eliminar vistas anteriores
-            carContainer.addView(XmlParser.parse(codigoXML)); // Agregar vista generada
-
-            layout.addView(cocheView); // Agregar vista de coche al layout principal
+            View view =getLayoutInflater().inflate(R.layout.car_layout,null);
+            carContainer.addView(view);
         }
-
-
     }
-    public String generarCodigoXML(Coche coche) {
+
+    /*
+
+
+    private View generarCodigoXML(Coche coche) {
+        // Crear vista contenedor del coche
+        LinearLayout cocheContainer = new LinearLayout(this);
+        cocheContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        cocheContainer.setOrientation(LinearLayout.HORIZONTAL);
+
+        // Crear vista del texto del coche
+        LinearLayout textoContainer = new LinearLayout(this);
+        textoContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+        textoContainer.setOrientation(LinearLayout.VERTICAL);
+
+        TextView marcaTextView = new TextView(this);
+        marcaTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        marcaTextView.setText("Coche: " + coche.getMarca() + " " + coche.getModelo());
+        marcaTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        marcaTextView.setTypeface(null, Typeface.BOLD);
+
+        TextView matriculaTextView = new TextView(this);
+        matriculaTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        matriculaTextView.setText("Matrícula: " + coche.getMatricula());
+
+        TextView kmTextView = new TextView(this);
+        kmTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        kmTextView.setText("Km Actual: " + coche.getKm());
+
+        TextView itvTextView = new TextView(this);
+        itvTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        itvTextView.setText("Próxima ITV: " + coche.getFechaItv().toString());
+
+        textoContainer.addView(marcaTextView);
+        textoContainer.addView(matriculaTextView);
+        textoContainer.addView(kmTextView);
+        textoContainer.addView(itvTextView);
+
+        // Crear botón de edición
+        Button editarButton = new Button(this);
+        editarButton.setLayoutParams(new LinearLayout.LayoutParams
+
+     */
+
+
+    public String generateCodigoXML(Coche coche) {
         StringBuilder sb = new StringBuilder();
 
         // Inicio del View
