@@ -103,11 +103,11 @@ public class ActivityMyCars extends AppCompatActivity {
             TextView carPlate = view.findViewById(car_plate);
             carPlate.setText(coche.getMatricula());
 
-            //TextView carKm = view.findViewById(car_km);
-           // carKm.setText(coche.getKm());
+            TextView carKm = view.findViewById(car_km);
+            carKm.setText(String.valueOf(coche.getKm()));
 
-         //   TextView carITV = view.findViewById(car_itv);
-         //   carBrand.setText(coche.getITV());
+            TextView carITV = view.findViewById(car_itv);
+            carITV.setText(String.valueOf(coche.getITV()));
 
             carContainer.addView(view);
 
