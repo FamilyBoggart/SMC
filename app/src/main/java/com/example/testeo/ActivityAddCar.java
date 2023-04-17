@@ -34,6 +34,10 @@ public class ActivityAddCar extends AppCompatActivity {
         Intent intent  = getIntent();
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
 
+        Coche carData = (Coche) intent.getSerializableExtra("objCar");
+        carData(carData);
+
+
         Button backButton = findViewById(add_car_btn_back);
         backButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -98,5 +102,25 @@ public class ActivityAddCar extends AppCompatActivity {
         String km =view.getText().toString();
         car.setKm(Integer.parseInt(km));
         return car;
+    }
+    public void carData(Coche coche){
+        if(coche != null){
+            EditText view = null;
+
+            view = findViewById(add_car_txt_marca);
+            view.setText(coche.getMarca());
+
+            view = findViewById(add_car_txt_modelo);
+            view.setText(coche.getModelo());
+
+            view = findViewById(add_car_txt_matricula);
+            view.setText(String.valueOf(coche.getMatricula()));
+
+            view = findViewById(add_car_txt_year_mat);
+            view.setText(String.valueOf(coche.getYear_matriculacion()));
+
+            view = findViewById(add_car_txt_km);
+            view.setText(String.valueOf(coche.getKm()));
+        }
     }
 }
