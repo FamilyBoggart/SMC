@@ -56,7 +56,16 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public List<Coche> getCoches() {
+    public List<Coche> getCoches(Context context) {
+
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        this.coches=admin.getCoches(this.getId());
+
+        db.close();
+        admin.close();
+
         return this.coches;
     }
 
@@ -67,11 +76,31 @@ public class Usuario implements Serializable {
 
     // metodos CRUD para Coches (read = getCoches)
 
-    public void agregarCoche(Coche coche) {
+    public void agregarCoche(Coche coche,Context context) {
+        //POO
         this.coches.add(coche);
+
+        //BBDD
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        ContentValues registro = new ContentValues();
+
+        registro.put("marca",coche.getMarca());
+        registro.put("modelo",coche.getModelo());
+        registro.put("matricula",coche.getMatricula());
+        registro.put("año_matriculacion",coche.getYear_matriculacion());
+        registro.put("owner_name",this.getNombre());
+        registro.put("owner_id",this.getId());
+        registro.put("km",coche.getKm());
+
+        db.insert("coches",null,registro);
+        db.close();
+        admin.close();
+
+
     }
 
-    public void modificarCoche(Coche cocheNuevo) {
+    public void modificarCoche(Coche cocheNuevo,Context context) {
 
         // Buscamos el coche que queremos modificar en el ArrayList
         for (int i = 0; i < this.coches.size(); i++) {

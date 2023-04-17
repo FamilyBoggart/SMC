@@ -9,7 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.testeo.Objects.Coche;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DB_SQLite extends SQLiteOpenHelper {
 
@@ -70,5 +73,25 @@ public class DB_SQLite extends SQLiteOpenHelper {
         db.close();
         return columnValue;
     }
+
+    public ArrayList<Coche> getCoches(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Coche> coches = new ArrayList<>();
+        String[] columnas = {"marca", "modelo", "matricula", "año_matriculacion", "km"};
+        String condicion = "owner_id=?";
+        String[] argumentos = {String.valueOf(userId)};
+
+        Cursor cursor = db.query("coches", columnas, condicion, argumentos, null, null, null);
+
+        while (cursor.moveToNext()) {
+            Coche coche = new Coche(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt(4));
+            coches.add(coche);
+        }
+
+        cursor.close();
+        db.close();
+        return coches;
+    }
+
 
 }

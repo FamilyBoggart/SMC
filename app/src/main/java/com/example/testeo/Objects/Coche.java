@@ -13,7 +13,7 @@ public class Coche implements Serializable {
         private List<Componente> componentes;
 
     public Coche(){}
-        public Coche(String marca, String modelo, String matricula, int km, int year_matriculacion) {
+        public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
             this.marca = marca;
             this.modelo = modelo;
             this.matricula = matricula;

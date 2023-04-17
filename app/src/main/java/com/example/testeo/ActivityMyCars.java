@@ -67,8 +67,8 @@ public class ActivityMyCars extends AppCompatActivity {
     }
 
     protected void showCar(Usuario user) {
-
-        List<Coche> cars = user.getCoches();
+        Context context = getApplicationContext();
+        List<Coche> cars = user.getCoches(context);
 
         if (cars.isEmpty()) {
             TextView noCar = findViewById(noCars);

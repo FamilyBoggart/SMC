@@ -32,7 +32,7 @@ public class ActivityAddCar extends AppCompatActivity {
         setContentView(R.layout.activity_add_car);
 
         Intent intent  = getIntent();
-        
+
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
         Coche carData = (Coche) intent.getSerializableExtra("objCar");
         carData(carData);
@@ -51,12 +51,12 @@ public class ActivityAddCar extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-
+                    Context context = getApplicationContext();
                     Coche car=addCar();
                     if(carData!=null)
-                    {  user.modificarCoche(car);}
+                    {  user.modificarCoche(car,context);}
                     else
-                    { user.agregarCoche(car);  }
+                    { user.agregarCoche(car,context);  }
 
 
                     Switch component = findViewById(switch1);
