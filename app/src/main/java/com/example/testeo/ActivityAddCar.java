@@ -32,8 +32,8 @@ public class ActivityAddCar extends AppCompatActivity {
         setContentView(R.layout.activity_add_car);
 
         Intent intent  = getIntent();
+        
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
-
         Coche carData = (Coche) intent.getSerializableExtra("objCar");
         carData(carData);
 
@@ -51,9 +51,30 @@ public class ActivityAddCar extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
+
+                    Coche car=addCar();
+                    if(carData!=null)
+                    {  user.modificarCoche(car);}
+                    else
+                    { user.agregarCoche(car);  }
+
+
+                    Switch component = findViewById(switch1);
+                    if(component.isChecked()){
+                        Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
+                        intent.putExtra("objUser",user);
+                        //intent.putExtra("objCar",car);
+                        startActivity(intent);}
+                    else{
+                        Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
+                        intent.putExtra("objUser",user);
+                        startActivity(intent);
+                    }
+
+
+
                //Agregamos un coche al usuario asignado
-                Coche car=addCar();
-                user.agregarCoche(car);
+
 
 
 
@@ -62,17 +83,7 @@ public class ActivityAddCar extends AppCompatActivity {
 
 
                 // Division por el switch
-                Switch component = findViewById(switch1);
-                if(component.isChecked()){
-                    Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
-                    intent.putExtra("objUser",user);
-                    //intent.putExtra("objCar",car);
-                    startActivity(intent);}
-                else{
-                    Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
-                    intent.putExtra("objUser",user);
-                    startActivity(intent);
-                }
+
             }
         });
     }

@@ -79,13 +79,13 @@ public class ActivityMyCars extends AppCompatActivity {
         } else {
             TextView noCar = findViewById(noCars);
             noCar.setVisibility(View.GONE);
-            eachCar(cars);
+            eachCar(cars,user);
         }
 
 
     }
 
-    private void eachCar(List<Coche> cars) {
+    private void eachCar(List<Coche> cars,Usuario user) {
         LinearLayout carContainer = findViewById(R.id.carContainer);
 
         carContainer.setVisibility(View.VISIBLE);
@@ -116,6 +116,7 @@ public class ActivityMyCars extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), ActivityAddCar.class);
                     intent.putExtra("objCar", coche);
+                    intent.putExtra("objUser",user);
                     startActivity(intent);
                 }
             });

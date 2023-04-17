@@ -74,10 +74,10 @@ public class Usuario implements Serializable {
     public void modificarCoche(Coche cocheNuevo) {
 
         // Buscamos el coche que queremos modificar en el ArrayList
-        for (int i = 0; i < coches.size(); i++) {
-            if (coches.get(i).getMatricula().equals(cocheNuevo.getMatricula())) {
+        for (int i = 0; i < this.coches.size(); i++) {
+            if (this.coches.get(i).getMatricula().equals(cocheNuevo.getMatricula())) {
                 // Si encontramos el coche, lo reemplazamos por el nuevo objeto coche
-                coches.set(i, cocheNuevo);
+                this.coches.set(i, cocheNuevo);
                 break;
             }
         }
