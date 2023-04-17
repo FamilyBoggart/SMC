@@ -1,5 +1,11 @@
 package com.example.testeo;
 
+import static com.example.testeo.R.id.add_car_txt_year_mat;
+import static com.example.testeo.R.id.car_brand;
+import static com.example.testeo.R.id.car_itv;
+import static com.example.testeo.R.id.car_km;
+import static com.example.testeo.R.id.car_model;
+import static com.example.testeo.R.id.car_plate;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 import static com.example.testeo.R.id.mycars_btn_back;
 import static com.example.testeo.R.id.noCars;
@@ -87,7 +93,25 @@ public class ActivityMyCars extends AppCompatActivity {
         for (Coche coche : cars) {
 
             View view =getLayoutInflater().inflate(R.layout.car_layout,null);
+
+            TextView carBrand = view.findViewById(car_brand);
+            carBrand.setText(coche.getMarca());
+
+            TextView carModel = view.findViewById(car_model);
+            carModel.setText(coche.getModelo());
+
+            TextView carPlate = view.findViewById(car_plate);
+            carPlate.setText(coche.getMatricula());
+
+            //TextView carKm = view.findViewById(car_km);
+           // carKm.setText(coche.getKm());
+
+         //   TextView carITV = view.findViewById(car_itv);
+         //   carBrand.setText(coche.getITV());
+
             carContainer.addView(view);
+
+
         }
     }
 

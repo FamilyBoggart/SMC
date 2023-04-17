@@ -71,8 +71,8 @@ public class Coche implements Serializable {
             this.year_matriculacion = year_matriculacion;
         }
 
-        public double getKm() {
-            return km;
+        public int getKm() {
+            return this.km;
         }
 
         public void setKm(int km) {
