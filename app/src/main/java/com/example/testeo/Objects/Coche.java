@@ -1,6 +1,7 @@
 package com.example.testeo.Objects;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,11 +84,31 @@ public class Coche implements Serializable {
             return componentes;
         }
 
-        public void setComponentes(List<Componente> componentes) {
-            this.componentes = componentes;
+        private void setComponentes() {
+
+            Componente[] componentesArray = {
+                new Componente("Aceite de motor", 10000, this.km),
+                new Componente("Filtro de aire", 20000, this.km),
+                new Componente("Liquido de frenos", 40000, this.km),
+                new Componente("Filtro de aceite", 15000, this.km),
+                new Componente("Bujias", 30000, this.km),
+                new Componente("Filtro de combustible", 25000, this.km),
+                new Componente("Neumaticos de alante", 50000, this.km),
+                new Componente("Neumaticos de atras", 50000, this.km),
+                new Componente("Bateria", 60000, this.km),
+                new Componente("Correa de distribucion", 100000, this.km),
+                new Componente("Suspension", 80000, this.km)
+            };
+
+            for(int i = 0; i < componentesArray.length; i++) {
+                this.componentes.add(componentesArray[i]);
+            }
         }
 
-        //Metodos para la ITV
+        public void editComponente(){}
+
+
+    //Metodos para la ITV
     public int getITV(){
             return year_matriculacion+4;
     }

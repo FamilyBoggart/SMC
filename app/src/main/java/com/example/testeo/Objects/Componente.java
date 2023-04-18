@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 
 public class Componente implements Serializable {
     private int km;
-    private LocalDateTime fechaRevision;
+    private int km_revision;
     private String nombre;
 
-    public Componente(int km, LocalDateTime fechaRevision, String nombre) {
+    public Componente(String nombre, int km_revision, int km) {
         this.km = km;
-        this.fechaRevision = fechaRevision;
+        this.km_revision = km_revision;
         this.nombre = nombre;
     }
 
@@ -22,12 +22,12 @@ public class Componente implements Serializable {
         this.km = km;
     }
 
-    public LocalDateTime getFechaRevision() {
-        return fechaRevision;
+    public int getKmRevision() {
+        return km_revision;
     }
 
-    public void setFechaRevision(LocalDateTime fechaRevision) {
-        this.fechaRevision = fechaRevision;
+    public void setKmRevision(int km_revision) {
+        this.km_revision = km_revision;
     }
 
     public String getNombre() {
