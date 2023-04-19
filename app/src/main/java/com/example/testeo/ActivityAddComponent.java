@@ -1,5 +1,12 @@
 package com.example.testeo;
 
+import static com.example.testeo.R.id.car_brand;
+import static com.example.testeo.R.id.car_button;
+import static com.example.testeo.R.id.component_button;
+import static com.example.testeo.R.id.component_edit;
+import static com.example.testeo.R.id.component_km;
+import static com.example.testeo.R.id.component_km_rev;
+import static com.example.testeo.R.id.component_name;
 import static com.example.testeo.R.id.edit_component_btn_next;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 
@@ -11,12 +18,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.testeo.Objects.Coche;
 import com.example.testeo.Objects.Componente;
 import com.example.testeo.Objects.Usuario;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -45,19 +55,51 @@ public class ActivityAddComponent extends AppCompatActivity
     }
 
     protected void showComponent(Coche car){
-        if(car!=null){
+
             Context context = getApplicationContext();
             LinearLayout componentContainer = findViewById(R.id.component_container);
+            componentContainer.removeAllViews();
+
             int cont =0;
             for(Componente component : car.getComponentes()) {
-                cont++;
+                View view = getLayoutInflater().inflate(R.layout.component_layout, null);
+
+                TextView componentName = view.findViewById(component_name);
+                componentName.setText(component.getNombre());
+
+                TextView componentKmRev = view.findViewById(component_km_rev);
+                componentKmRev.setText(String.valueOf(component.getKmRevision()));
+
+                TextView componentKm = view.findViewById(component_km);
+                componentKm.setText(String.valueOf(component.getKm()));
+
+                TextView editComponent = view.findViewById(component_edit);
+
+                Button editButton = view.findViewById(component_button);
+                editButton.setTag("edit");
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(v.getTag().equals("edit")){
+                            componentKm.setVisibility(View.GONE);
+                            editComponent.setVisibility(View.VISIBLE);
+                            editButton.setText("CONFIRMAR");
+                            v.setTag("confirm");
+                        }
+                        else{
+                            String km = editComponent.getText().toString();
+                            componentKm.setText(km);
+                            componentKm.setVisibility(View.VISIBLE);
+                            editComponent.setVisibility(View.GONE);
+                            editButton.setText("EDITAR");
+                            v.setTag("edit");
+                        }
+
+
+                    }
+                });
+                componentContainer.addView(view);
             }
-            System.out.println("Componentes: "+cont);
-        }
-
-
-
-
     }
 
 

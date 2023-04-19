@@ -31,7 +31,7 @@ public class Componente implements Serializable {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
