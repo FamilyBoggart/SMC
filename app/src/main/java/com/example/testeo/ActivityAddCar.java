@@ -63,7 +63,7 @@ public class ActivityAddCar extends AppCompatActivity {
                     if(component.isChecked()){
                         Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
                         intent.putExtra("objUser",user);
-                        //intent.putExtra("objCar",car);
+                        intent.putExtra("objCar",car);
                         startActivity(intent);}
                     else{
                         Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
@@ -71,18 +71,6 @@ public class ActivityAddCar extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-
-
-               //Agregamos un coche al usuario asignado
-
-
-
-
-
-
-
-
-                // Division por el switch
 
             }
         });
