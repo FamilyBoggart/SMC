@@ -34,8 +34,8 @@ public class ActivityAddCar extends AppCompatActivity {
         Intent intent  = getIntent();
 
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
-        Coche carData = (Coche) intent.getSerializableExtra("objCar");
-        carData(carData);
+        Coche carOld = (Coche) intent.getSerializableExtra("objCar");
+        carData(carOld);
 
 
         Button backButton = findViewById(add_car_btn_back);
@@ -52,18 +52,18 @@ public class ActivityAddCar extends AppCompatActivity {
             public void onClick(View v) {
 
                     Context context = getApplicationContext();
-                    Coche car=addCar();
-                    if(carData!=null)
-                    {  user.modificarCoche(car,context);}
+                    Coche carNew=addCar();
+                    if(carOld!=null)
+                    {  user.modificarCoche(carNew,context);}
                     else
-                    { user.agregarCoche(car,context);  }
+                    { user.agregarCoche(carNew,context);  }
 
 
                     Switch component = findViewById(switch1);
                     if(component.isChecked()){
                         Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
                         intent.putExtra("objUser",user);
-                        intent.putExtra("objCar",car);
+                        intent.putExtra("objCar",carNew);
                         startActivity(intent);}
                     else{
                         Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
@@ -100,6 +100,7 @@ public class ActivityAddCar extends AppCompatActivity {
         view = findViewById(add_car_txt_km);
         String km =view.getText().toString();
         car.setKm(Integer.parseInt(km));
+
         return car;
     }
     public void carData(Coche coche){

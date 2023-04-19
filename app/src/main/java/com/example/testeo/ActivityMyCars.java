@@ -110,6 +110,8 @@ public class ActivityMyCars extends AppCompatActivity {
             TextView carITV = view.findViewById(car_itv);
             carITV.setText(String.valueOf(coche.getITV()));
 
+            coche.setComponentes();
+
             Button editButton = view.findViewById(car_button);
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override

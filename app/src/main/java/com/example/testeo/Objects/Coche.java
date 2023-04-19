@@ -13,31 +13,19 @@ public class Coche implements Serializable {
         private int km;
         private List<Componente> componentes;
 
-    public Coche(){}
-        public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
+    public Coche(){
+        this.componentes = new ArrayList<Componente>();
+        setComponentes();}
+    public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
             this.marca = marca;
             this.modelo = modelo;
             this.matricula = matricula;
             this.year_matriculacion = year_matriculacion;
             this.km = km;
             this.componentes = new ArrayList<Componente>();
+            setComponentes();
         }
-        public Coche(String marca, String modelo, String matricula, int km) {
-            this.marca = marca;
-            this.modelo = modelo;
-            this.matricula = matricula;
-            this.year_matriculacion = 2023;
-            this.km = km;
-            this.componentes = new ArrayList<Componente>();
-    }
-        public Coche(String marca, String modelo, String matricula) {
-            this.marca = marca;
-            this.modelo = modelo;
-            this.matricula = matricula;
-            this.year_matriculacion = 2023;
-            this.km = 0;
-            this.componentes = new ArrayList<Componente>();
-    }
+
 
     // Getters & Setters
         public String getMarca() {
@@ -81,10 +69,10 @@ public class Coche implements Serializable {
         }
 
         public List<Componente> getComponentes() {
-            return componentes;
+            return this.componentes;
         }
 
-        private void setComponentes() {
+        public void setComponentes() {
 
             Componente[] componentesArray = {
                 new Componente("Aceite de motor", 10000, this.km),
