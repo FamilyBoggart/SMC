@@ -17,12 +17,20 @@ public class Coche implements Serializable {
         private String matricula;
         private int year_matriculacion;
         private int km;
-        private List<Componente> componentes;
-
-    public Coche(Context context){
+        public List<Componente> componentes;
+    /*
+       Constructor para AddCar
+    */
+    public Coche(Context context,String matricula,int km){
+        this.matricula=matricula;
+        this.km=km;
         this.componentes = new ArrayList<Componente>();
         setComponentes(context);
         }
+
+    /*
+        Constructor para la BBDD
+    */
     public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
             this.marca = marca;
             this.modelo = modelo;
@@ -73,7 +81,6 @@ public class Coche implements Serializable {
         public void setKm(int km) {
             this.km = km;
         }
-
         public List<Componente> getComponentes(Context context) {
             DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
             SQLiteDatabase db = admin.getWritableDatabase();
@@ -104,8 +111,7 @@ public class Coche implements Serializable {
 
             for(int i = 0; i < componentesArray.length; i++) {
                 this.componentes.add(componentesArray[i]);
-                //BBDD
-                registrarComponente(context,componentesArray[i]);
+
             }
         }
 

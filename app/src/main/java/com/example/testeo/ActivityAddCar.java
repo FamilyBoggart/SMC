@@ -53,7 +53,8 @@ public class ActivityAddCar extends AppCompatActivity {
 
                     Context context = getApplicationContext();
                     Coche carNew=addCar();
-                    if(carOld!=null)
+                    //Damos por hecho que si cambia la matricula se trata de un coche distinto
+                    if(carOld!=null&&carOld.getMatricula().equals(carNew.getMatricula()))
                     {  user.modificarCoche(carNew,context);}
                     else
                     { user.agregarCoche(carNew,context);  }
@@ -79,8 +80,17 @@ public class ActivityAddCar extends AppCompatActivity {
     public Coche addCar(){
 
         Context context = getApplicationContext();
-        Coche car = new Coche(context);
         EditText view = null;
+
+        view = findViewById(add_car_txt_matricula);
+        String matricula =view.getText().toString();
+
+        view = findViewById(add_car_txt_km);
+        int km =Integer.parseInt(view.getText().toString());
+
+
+        Coche car = new Coche(context,matricula,km);
+
 
         view = findViewById(add_car_txt_marca);
         String marca =view.getText().toString();
@@ -90,17 +100,9 @@ public class ActivityAddCar extends AppCompatActivity {
         String modelo =view.getText().toString();
         car.setModelo(modelo);
 
-        view = findViewById(add_car_txt_matricula);
-        String matricula =view.getText().toString();
-        car.setMatricula(matricula);
-
         view = findViewById(add_car_txt_year_mat);
-        String year =view.getText().toString();
-        car.setYear_matriculacion(Integer.parseInt(year));
-
-        view = findViewById(add_car_txt_km);
-        String km =view.getText().toString();
-        car.setKm(Integer.parseInt(km));
+        int year =Integer.parseInt(view.getText().toString());
+        car.setYear_matriculacion(year);
 
         return car;
     }

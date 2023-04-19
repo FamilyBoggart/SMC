@@ -94,15 +94,44 @@ public class Usuario implements Serializable {
         registro.put("km",coche.getKm());
 
         db.insert("coches",null,registro);
+
         db.close();
         admin.close();
+        //Registramos los componentes del coche
+        for(Componente componente : coche.componentes){
+                coche.registrarComponente(context,componente);
+        }
+
+
 
 
     }
 
     public void modificarCoche(Coche cocheNuevo,Context context) {
 
-        // Buscamos el coche que queremos modificar en el ArrayList
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        ContentValues registro = new ContentValues();
+
+        registro.put("marca",cocheNuevo.getMarca());
+        registro.put("modelo",cocheNuevo.getModelo());
+        registro.put("matricula",cocheNuevo.getMatricula());
+        registro.put("año_matriculacion",cocheNuevo.getYear_matriculacion());
+        registro.put("owner_name",this.getNombre());
+        registro.put("owner_id",this.getId());
+        registro.put("km",cocheNuevo.getKm());
+
+
+        String condicion = "matricula=?";
+        String[] argumentos = {cocheNuevo.getMatricula()};
+
+        db.update("coches",registro,condicion,argumentos);
+        db.close();
+        admin.close();
+
+
+
+        // POO
         for (int i = 0; i < this.coches.size(); i++) {
             if (this.coches.get(i).getMatricula().equals(cocheNuevo.getMatricula())) {
                 // Si encontramos el coche, lo reemplazamos por el nuevo objeto coche
