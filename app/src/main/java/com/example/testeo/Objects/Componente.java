@@ -18,7 +18,7 @@ public class Componente implements Serializable {
 
     }
 
-    public double getKm() {
+    public int getKm() {
         return km;
     }
 

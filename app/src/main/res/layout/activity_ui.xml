@@ -91,131 +91,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <LinearLayout
+                        android:id="@+id/ui_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <!--        Component Code         -->
-                        <View
-                            android:id="@+id/divider_component"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="?android:attr/listDivider"
-                            tools:ignore="DuplicateIds" />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:visibility="gone">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="Coche: "
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:text="@string/marca" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:text="@string/modelo" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:text="@string/Matricula" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="@string/Matricula" />
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:layout_weight="1"
-                                        android:text="@string/component"/>
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="@string/component" />
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:layout_weight="1"
-                                        android:text="@string/actual_km" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="@string/actual_km" />
-
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:layout_width="100dp"
-                                        android:layout_height="wrap_content"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:layout_weight="1"
-                                        android:text="@string/recomended_km" />
-                                    <TextView
-                                        android:layout_width="80dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="@string/recomended_km" />
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
 
 
 
 
-                        </LinearLayout>
+
                         <!--        END Component Code         -->
 
 

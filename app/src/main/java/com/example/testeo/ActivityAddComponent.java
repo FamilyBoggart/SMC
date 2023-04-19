@@ -1,20 +1,15 @@
 package com.example.testeo;
 
-import static com.example.testeo.R.id.car_brand;
-import static com.example.testeo.R.id.car_button;
 import static com.example.testeo.R.id.component_button;
 import static com.example.testeo.R.id.component_edit;
 import static com.example.testeo.R.id.component_km;
 import static com.example.testeo.R.id.component_km_rev;
 import static com.example.testeo.R.id.component_name;
 import static com.example.testeo.R.id.edit_component_btn_next;
-import static com.example.testeo.R.id.mycars_btn_add_car;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SyncStatusObserver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -25,10 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.testeo.Objects.Coche;
 import com.example.testeo.Objects.Componente;
 import com.example.testeo.Objects.Usuario;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class ActivityAddComponent extends AppCompatActivity
 {
