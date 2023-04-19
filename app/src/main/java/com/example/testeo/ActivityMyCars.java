@@ -87,7 +87,7 @@ public class ActivityMyCars extends AppCompatActivity {
 
     private void eachCar(List<Coche> cars,Usuario user) {
         LinearLayout carContainer = findViewById(R.id.carContainer);
-
+        Context context = getApplicationContext();
         carContainer.setVisibility(View.VISIBLE);
         carContainer.removeAllViews();
 
@@ -110,7 +110,7 @@ public class ActivityMyCars extends AppCompatActivity {
             TextView carITV = view.findViewById(car_itv);
             carITV.setText(String.valueOf(coche.getITV()));
 
-            coche.setComponentes();
+            coche.setComponentes(context);
 
             Button editButton = view.findViewById(car_button);
             editButton.setOnClickListener(new View.OnClickListener() {

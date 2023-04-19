@@ -1,5 +1,11 @@
 package com.example.testeo.Objects;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.testeo.DB_SQLite;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -13,9 +19,10 @@ public class Coche implements Serializable {
         private int km;
         private List<Componente> componentes;
 
-    public Coche(){
+    public Coche(Context context){
         this.componentes = new ArrayList<Componente>();
-        setComponentes();}
+        setComponentes(context);
+        }
     public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
             this.marca = marca;
             this.modelo = modelo;
@@ -23,7 +30,6 @@ public class Coche implements Serializable {
             this.year_matriculacion = year_matriculacion;
             this.km = km;
             this.componentes = new ArrayList<Componente>();
-            setComponentes();
         }
 
 
@@ -68,28 +74,38 @@ public class Coche implements Serializable {
             this.km = km;
         }
 
-        public List<Componente> getComponentes() {
+        public List<Componente> getComponentes(Context context) {
+            DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+            SQLiteDatabase db = admin.getWritableDatabase();
+
+            this.componentes=admin.getComponentes(this.matricula);
+
+            db.close();
+            admin.close();
+
             return this.componentes;
         }
 
-        public void setComponentes() {
+        public void setComponentes(Context context) {
 
             Componente[] componentesArray = {
-                new Componente("Aceite de motor", 10000, this.km),
-                new Componente("Filtro de aire", 20000, this.km),
-                new Componente("Liquido de frenos", 40000, this.km),
-                new Componente("Filtro de aceite", 15000, this.km),
-                new Componente("Bujias", 30000, this.km),
-                new Componente("Filtro de combustible", 25000, this.km),
-                new Componente("Neumaticos de alante", 50000, this.km),
-                new Componente("Neumaticos de atras", 50000, this.km),
-                new Componente("Bateria", 60000, this.km),
-                new Componente("Correa de distribucion", 100000, this.km),
-                new Componente("Suspension", 80000, this.km)
+                new Componente("Aceite de motor", 10000, this.km,this.matricula),
+                new Componente("Filtro de aire", 20000, this.km,this.matricula),
+                new Componente("Liquido de frenos", 40000, this.km,this.matricula),
+                new Componente("Filtro de aceite", 15000, this.km,this.matricula),
+                new Componente("Bujias", 30000, this.km,this.matricula),
+                new Componente("Filtro de combustible", 25000, this.km,this.matricula),
+                new Componente("Neumaticos de alante", 50000, this.km,this.matricula),
+                new Componente("Neumaticos de atras", 50000, this.km,this.matricula),
+                new Componente("Bateria", 60000, this.km,this.matricula),
+                new Componente("Correa de distribucion", 100000, this.km,this.matricula),
+                new Componente("Suspension", 80000, this.km,this.matricula)
             };
 
             for(int i = 0; i < componentesArray.length; i++) {
                 this.componentes.add(componentesArray[i]);
+                //BBDD
+                registrarComponente(context,componentesArray[i]);
             }
         }
 
@@ -109,6 +125,21 @@ public class Coche implements Serializable {
                 }
             }
         }
+    public void registrarComponente(Context context,Componente componente){
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        ContentValues registro = new ContentValues();
+
+
+        registro.put("componente",componente.getNombre());
+        registro.put("km_revision",componente.getKmRevision());
+        registro.put("km",componente.getKm());
+        registro.put("matricula",this.matricula);
+
+        db.insert("componentes",null,registro);
+        db.close();
+        admin.close();
+    }
     }
 
 

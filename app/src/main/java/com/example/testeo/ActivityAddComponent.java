@@ -61,7 +61,7 @@ public class ActivityAddComponent extends AppCompatActivity
             componentContainer.removeAllViews();
 
             int cont =0;
-            for(Componente component : car.getComponentes()) {
+            for(Componente component : car.getComponentes(context)) {
                 View view = getLayoutInflater().inflate(R.layout.component_layout, null);
 
                 TextView componentName = view.findViewById(component_name);

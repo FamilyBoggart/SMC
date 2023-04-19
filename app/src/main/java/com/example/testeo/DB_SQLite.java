@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.testeo.Objects.Coche;
+import com.example.testeo.Objects.Componente;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +36,6 @@ public class DB_SQLite extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
 
 
     @SuppressLint("Range")
@@ -91,6 +91,25 @@ public class DB_SQLite extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return coches;
+    }
+
+    public ArrayList<Componente> getComponentes(String matricula) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Componente> componentes = new ArrayList<>();
+        String[] columnas = {"componente", "km_revision", "km","matricula"};
+        String condicion = "matricula=?";
+        String[] argumentos = {String.valueOf(matricula)};
+
+        Cursor cursor = db.query("componentes", columnas, condicion, argumentos, null, null, null);
+
+        while (cursor.moveToNext()) {
+            Componente componente = new Componente(cursor.getString(0), cursor.getInt(1), cursor.getInt(2),cursor.getString(3));
+            componentes.add(componente);
+        }
+
+        cursor.close();
+        db.close();
+        return componentes;
     }
 
 

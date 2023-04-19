@@ -77,8 +77,9 @@ public class ActivityAddCar extends AppCompatActivity {
     }
 
     public Coche addCar(){
-        Coche car = new Coche();
+
         Context context = getApplicationContext();
+        Coche car = new Coche(context);
         EditText view = null;
 
         view = findViewById(add_car_txt_marca);
