@@ -7,8 +7,10 @@ import static com.example.testeo.R.id.add_car_txt_marca;
 import static com.example.testeo.R.id.add_car_txt_matricula;
 import static com.example.testeo.R.id.add_car_txt_modelo;
 import static com.example.testeo.R.id.add_car_txt_year_mat;
+import static com.example.testeo.R.id.btn_removecar;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 import static com.example.testeo.R.id.switch1;
+import static com.example.testeo.R.id.txt_add_car;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +38,24 @@ public class ActivityAddCar extends AppCompatActivity {
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
         Coche carOld = (Coche) intent.getSerializableExtra("objCar");
         carData(carOld);
+
+
+        Button removeButton = findViewById(btn_removecar);
+        removeButton.setVisibility(View.GONE);
+        removeButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Context context= getApplicationContext();
+                user.eliminarCoche(carOld,context);
+            }
+        });
+        //Mostramos el boton borrar
+        if(carOld!=null){
+
+            removeButton.setVisibility(View.VISIBLE);
+            TextView txt = findViewById(txt_add_car);
+            txt.setText("Editar Coche");
+
+        }
 
 
         Button backButton = findViewById(add_car_btn_back);

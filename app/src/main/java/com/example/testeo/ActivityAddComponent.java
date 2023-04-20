@@ -30,7 +30,6 @@ public class ActivityAddComponent extends AppCompatActivity
         Intent intent = getIntent();
         Coche car = (Coche) intent.getSerializableExtra("objCar"); //Debe vnir un coche siempre
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
-        System.out.println(car.getKm());
         showComponent(car);
 
 
@@ -51,7 +50,7 @@ public class ActivityAddComponent extends AppCompatActivity
             LinearLayout componentContainer = findViewById(R.id.component_container);
             componentContainer.removeAllViews();
 
-            int cont =0;
+
             for(Componente component : car.getComponentes(context)) {
                 View view = getLayoutInflater().inflate(R.layout.component_layout, null);
 
@@ -78,12 +77,17 @@ public class ActivityAddComponent extends AppCompatActivity
                             v.setTag("confirm");
                         }
                         else{
+                            //Aplicamos los cambios visuales
                             String km = editComponent.getText().toString();
                             componentKm.setText(km);
                             componentKm.setVisibility(View.VISIBLE);
                             editComponent.setVisibility(View.GONE);
                             editButton.setText("EDITAR");
                             v.setTag("edit");
+
+                            //Conservamos los cambios en la BBDD
+                            component.setKm(Integer.parseInt(km));
+                            car.actualizarComponente(context,component);
                         }
 
 

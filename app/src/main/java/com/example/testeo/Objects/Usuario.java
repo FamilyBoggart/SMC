@@ -146,10 +146,22 @@ public class Usuario implements Serializable {
         }
     }
 
-    public void eliminarCoche(String matricula) {
+    public void eliminarCoche(Coche car,Context context) {
+
+        //BBDD
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        String condicion = "matricula=?";
+        String[] argumentosCar={car.getMatricula()};
+
+        db.delete("componentes",condicion,argumentosCar);
+        db.delete("coches",condicion,argumentosCar);
+        db.close();
+        admin.close();
 
         for (int i = 0; i < coches.size(); i++) {
-            if (coches.get(i).getMatricula().equals(matricula)) {
+            if (coches.get(i).getMatricula().equals(car.getMatricula())) {
                 coches.remove(i);
                 break;
             }

@@ -123,10 +123,10 @@ public class Coche implements Serializable {
             return year_matriculacion+4;
     }
         //Metodos CRUD de componentes
-        public void editarComponente(Componente componente) {
-            for (int i = 0; i < componentes.size(); i++) {
-                if (componentes.get(i).getNombre().equals(componente.getNombre())) {
-                    componentes.set(i, componente);
+    public void editarComponente(Componente componente) {
+            for (int i = 0; i < this.componentes.size(); i++) {
+                if (this.componentes.get(i).getNombre().equals(componente.getNombre())) {
+                    this.componentes.set(i, componente);
                     break;
                 }
             }
@@ -162,6 +162,9 @@ public class Coche implements Serializable {
         db.update("componentes",registro,condicion,argumentos);
         db.close();
         admin.close();
+
+        //POO
+        editarComponente(componente);
     }
     }
 

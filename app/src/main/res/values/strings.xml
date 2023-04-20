@@ -20,6 +20,8 @@
     <string name="btn_add_car">Añadir coche</string>
     <string name="txt_edit_component">Personalizar componentes</string>
 
+    <string name="remove">Borrar</string>
+
 
     <!-- CAR PROPERTIES         -->
     <string name="Car">Coche:</string>
