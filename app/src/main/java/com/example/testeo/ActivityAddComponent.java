@@ -30,9 +30,10 @@ public class ActivityAddComponent extends AppCompatActivity
         Intent intent = getIntent();
         Coche car = (Coche) intent.getSerializableExtra("objCar"); //Debe vnir un coche siempre
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
+        int kmDiff = Integer.parseInt(intent.getSerializableExtra("kmDiff").toString());
         showComponent(car);
 
-
+        System.out.println("diferencia = "+kmDiff);
 
         Button addCarButton = findViewById(edit_component_btn_next);
         addCarButton.setOnClickListener(new View.OnClickListener() {

@@ -73,11 +73,14 @@ public class ActivityAddCar extends AppCompatActivity {
 
                     Context context = getApplicationContext();
                     Coche carNew=addCar();
+                    int kmDiff;
                     //Damos por hecho que si cambia la matricula se trata de un coche distinto
                     if(carOld!=null&&carOld.getMatricula().equals(carNew.getMatricula()))
-                    {  user.modificarCoche(carNew,context);}
+                    {   kmDiff = carNew.getKm()-carOld.getKm();
+                        user.modificarCoche(carNew,context);}
                     else
-                    { user.agregarCoche(carNew,context);  }
+                    {   user.agregarCoche(carNew,context);
+                        kmDiff =carNew.getKm();}
 
 
                     Switch component = findViewById(switch1);
@@ -85,6 +88,7 @@ public class ActivityAddCar extends AppCompatActivity {
                         Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
                         intent.putExtra("objUser",user);
                         intent.putExtra("objCar",carNew);
+                        intent.putExtra("kmDiff",kmDiff);
                         startActivity(intent);}
                     else{
                         Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
