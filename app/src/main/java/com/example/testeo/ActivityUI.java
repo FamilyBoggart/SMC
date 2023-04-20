@@ -1,7 +1,6 @@
 package com.example.testeo;
 
 
-import static com.example.testeo.R.id.car_brand;
 import static com.example.testeo.R.id.component_car_brand;
 import static com.example.testeo.R.id.component_car_model;
 import static com.example.testeo.R.id.component_car_plate;
@@ -11,7 +10,6 @@ import static com.example.testeo.R.id.show_component_name;
 import static com.example.testeo.R.id.ui_btn_my_cars;
 import static com.example.testeo.R.id.ui_container;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -103,11 +101,11 @@ public class ActivityUI extends AppCompatActivity {
      * @return
      */
     private boolean criterioShow(Componente componente,int percentage){
-        int kmRev = componente.getKmRevision();
+        double kmRev = (double) componente.getKmRevision();
         int km=componente.getKm();
         double uso = km/kmRev;
-        if(uso*100>=percentage)return true;
-        else return false;
+        if(uso*100>=percentage){return true;}
+        else {return false;}
 
     }
 

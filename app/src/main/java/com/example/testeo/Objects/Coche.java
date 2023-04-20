@@ -146,6 +146,23 @@ public class Coche implements Serializable {
         db.close();
         admin.close();
     }
+
+    public void actualizarComponente(Context context,Componente componente){
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        ContentValues registro = new ContentValues();
+
+
+
+        registro.put("km",componente.getKm());
+
+        String condicion="matricula=?";
+        String[] argumentos={this.matricula};
+
+        db.update("componentes",registro,condicion,argumentos);
+        db.close();
+        admin.close();
+    }
     }
 
 

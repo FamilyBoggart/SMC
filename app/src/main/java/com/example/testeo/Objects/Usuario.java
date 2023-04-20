@@ -129,6 +129,11 @@ public class Usuario implements Serializable {
         db.close();
         admin.close();
 
+        //Modificamos los comonentes del coche
+        for(Componente componente : cocheNuevo.componentes){
+            cocheNuevo.actualizarComponente(context,componente);
+        }
+
 
 
         // POO
