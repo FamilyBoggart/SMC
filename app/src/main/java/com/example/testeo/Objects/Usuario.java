@@ -34,10 +34,7 @@ public class Usuario implements Serializable {
 
     // Getters y Setters
 
-    public String getNombre() {
-
-        return this.nombre;
-    }
+    public String getNombre() {return this.nombre;}
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -204,5 +201,20 @@ public class Usuario implements Serializable {
 
     }
 
+    public void modifyUser(Context context){
+        ContentValues registro = new ContentValues();
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
 
+        registro.put("nombre",this.getNombre());
+        registro.put("email",this.getEmail());
+        registro.put("password",this.getPassword());
+
+        String condicion="id=?";
+        String[] argumentos={String.valueOf(this.getId())};
+
+        db.update("usuarios",registro,condicion,argumentos);
+        db.close();
+        admin.close();
+    }
 }

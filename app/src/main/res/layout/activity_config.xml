@@ -187,6 +187,19 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/config_edit_txt_name" />
 
+                        <TextView
+                            android:id="@+id/config_txt_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/btn_change_password"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:textStyle="bold"
+                            android:textColor="@color/red"
+                            android:visibility="visible"
+                            app:layout_constraintTop_toBottomOf="@+id/edit_confirm_new_password" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
