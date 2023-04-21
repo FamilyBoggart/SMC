@@ -25,7 +25,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.testeo.Objects.Coche;
+import com.example.testeo.Objects.Componente;
 import com.example.testeo.Objects.Usuario;
+
+import java.util.List;
 
 public class ActivityAddCar extends AppCompatActivity {
 
@@ -44,6 +47,8 @@ public class ActivityAddCar extends AppCompatActivity {
         removeButton.setVisibility(View.GONE);
         removeButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+
+                deleteData();
                 Context context= getApplicationContext();
                 user.eliminarCoche(carOld,context);
             }
@@ -73,22 +78,34 @@ public class ActivityAddCar extends AppCompatActivity {
 
                     Context context = getApplicationContext();
                     Coche carNew=addCar();
+
+                /**
+                 * VOY A HACER LA GUARRA
+                 */
+                List<Componente> componentes = carNew.getComponentes(context);
+                carNew.componentes=componentes;
                     int kmDiff;
                     //Damos por hecho que si cambia la matricula se trata de un coche distinto
                     if(carOld!=null&&carOld.getMatricula().equals(carNew.getMatricula()))
                     {   kmDiff = carNew.getKm()-carOld.getKm();
                         user.modificarCoche(carNew,context);}
                     else
-                    {   user.agregarCoche(carNew,context);
+                    {
+                        carNew.setComponentes(context);
+                        user.agregarCoche(carNew,context);
                         kmDiff =carNew.getKm();}
 
 
                     Switch component = findViewById(switch1);
                     if(component.isChecked()){
                         Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
+
+                        //Extras
                         intent.putExtra("objUser",user);
-                        intent.putExtra("objCar",carNew);
+                        if(carOld!=null){intent.putExtra("objCar",carOld);}
+                        else{intent.putExtra("objCar",carNew);}
                         intent.putExtra("kmDiff",kmDiff);
+
                         startActivity(intent);}
                     else{
                         Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
@@ -103,8 +120,7 @@ public class ActivityAddCar extends AppCompatActivity {
 
     public Coche addCar(){
 
-        Context context = getApplicationContext();
-        EditText view = null;
+        EditText view;
 
         view = findViewById(add_car_txt_matricula);
         String matricula =view.getText().toString();
@@ -113,7 +129,7 @@ public class ActivityAddCar extends AppCompatActivity {
         int km =Integer.parseInt(view.getText().toString());
 
 
-        Coche car = new Coche(context,matricula,km);
+        Coche car = new Coche(matricula,km);
 
 
         view = findViewById(add_car_txt_marca);
@@ -149,5 +165,18 @@ public class ActivityAddCar extends AppCompatActivity {
             view = findViewById(add_car_txt_km);
             view.setText(String.valueOf(coche.getKm()));
         }
+    }
+    public void deleteData(){
+        EditText view;
+        view = findViewById(add_car_txt_marca);
+        view.setText(null);
+        view = findViewById(add_car_txt_modelo);
+        view.setText(null);
+        view = findViewById(add_car_txt_matricula);
+        view.setText(null);
+        view = findViewById(add_car_txt_year_mat);
+        view.setText(null);
+        view = findViewById(add_car_txt_km);
+        view.setText(null);
     }
 }

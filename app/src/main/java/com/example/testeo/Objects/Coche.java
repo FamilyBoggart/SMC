@@ -21,11 +21,10 @@ public class Coche implements Serializable {
     /*
        Constructor para AddCar
     */
-    public Coche(Context context,String matricula,int km){
+    public Coche(String matricula,int km){
         this.matricula=matricula;
         this.km=km;
         this.componentes = new ArrayList<Componente>();
-        setComponentes(context);
         }
 
     /*
@@ -81,7 +80,10 @@ public class Coche implements Serializable {
         public void setKm(int km) {
             this.km = km;
         }
+
+
         public List<Componente> getComponentes(Context context) {
+
             DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
             SQLiteDatabase db = admin.getWritableDatabase();
 
@@ -89,6 +91,8 @@ public class Coche implements Serializable {
 
             db.close();
             admin.close();
+
+
 
             return this.componentes;
         }
@@ -148,9 +152,10 @@ public class Coche implements Serializable {
     }
 
     public void actualizarComponente(Context context,Componente componente){
+        ContentValues registro = new ContentValues();
         DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
         SQLiteDatabase db = admin.getWritableDatabase();
-        ContentValues registro = new ContentValues();
+
 
 
 
@@ -163,8 +168,6 @@ public class Coche implements Serializable {
         db.close();
         admin.close();
 
-        //POO
-        editarComponente(componente);
     }
     }
 

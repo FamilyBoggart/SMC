@@ -125,22 +125,18 @@ public class Usuario implements Serializable {
         db.update("coches",registro,condicion,argumentos);
         db.close();
         admin.close();
-
-        //Modificamos los comonentes del coche
-        for(Componente componente : cocheNuevo.componentes){
-            cocheNuevo.actualizarComponente(context,componente);
-        }
-
-
-
-        // POO
+       //POO
         for (int i = 0; i < this.coches.size(); i++) {
             if (this.coches.get(i).getMatricula().equals(cocheNuevo.getMatricula())) {
                 // Si encontramos el coche, lo reemplazamos por el nuevo objeto coche
-                this.coches.set(i, cocheNuevo);
+                this.coches.get(i).setMarca(cocheNuevo.getMarca());
+                this.coches.get(i).setModelo(cocheNuevo.getModelo());
+                this.coches.get(i).setKm(cocheNuevo.getKm());
+                this.coches.get(i).setYear_matriculacion(cocheNuevo.getYear_matriculacion());
                 break;
             }
         }
+
     }
 
     public void eliminarCoche(Coche car,Context context) {
