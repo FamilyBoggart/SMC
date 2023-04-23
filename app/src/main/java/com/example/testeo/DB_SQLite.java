@@ -26,10 +26,10 @@ public class DB_SQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE revisiones(marca VARCHAR(30),modelo VARCHAR(30),componente VARCHAR(50),tiempo int,km int,inspeccion VARCHAR(50) DEFAULT 'Reemplazo')");
         db.execSQL("CREATE TABLE usuarios(id INTEGER PRIMARY KEY ,email VARCHAR(40) NOT NULL,password varchar(20) NOT NULL,nombre VARCHAR(60) NOT NULL)");
-        db.execSQL("CREATE TABLE coches (marca VARCHAR(30),modelo VARCHAR(30),matricula varchar(10) PRIMARY KEY NOT NULL,año_matriculacion YEAR,owner_name varchar(60),owner_id int,km INT DEFAULT 0,CONSTRAINT fk_id FOREIGN KEY (owner_id) REFERENCES usuarios(id))");
-        db.execSQL("CREATE TABLE componentes(matricula VARCHAR(10),componente VARCHAR(60),tiempo int,tiempo_revsion int,km int,km_revision int,CONSTRAINT fk_matricula FOREIGN KEY (matricula) REFERENCES coches(matricula));");
+        db.execSQL("CREATE TABLE coches (marca VARCHAR(30),modelo VARCHAR(30),matricula varchar(10) PRIMARY KEY NOT NULL,año_matriculacion YEAR," +
+                    "owner_name varchar(60),owner_id int,km INT DEFAULT 0,CONSTRAINT fk_id FOREIGN KEY (owner_id) REFERENCES usuarios(id))");
+        db.execSQL("CREATE TABLE componentes(matricula VARCHAR(10),componente VARCHAR(60),km int,km_revision int,CONSTRAINT fk_matricula FOREIGN KEY (matricula) REFERENCES coches(matricula));");
     }
 
     @Override

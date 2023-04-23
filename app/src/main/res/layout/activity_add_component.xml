@@ -440,15 +440,23 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/edit_component_btn_next"
+        android:id="@+id/component_btn_back_ui"
         android:layout_width="136dp"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="#E69C79"
         android:text="@string/back_to_UI"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ui_frameLayout" />
+
+    <Button
+        android:id="@+id/btn_edit_component"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Editar componentes"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ui_frameLayout" />
 
 
