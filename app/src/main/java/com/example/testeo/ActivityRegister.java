@@ -51,7 +51,7 @@ public class ActivityRegister extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            public void registrar(Usuario user){
+            private void registrar(Usuario user){
                 Context context = getApplicationContext();
 
 
@@ -78,7 +78,7 @@ public class ActivityRegister extends AppCompatActivity {
 
             }
 
-            public boolean comprobacionPassword(){
+            private boolean comprobacionPassword(){
                 TextView view;
                 view=findViewById(R.id.txt_register_password);
                 String password = view.getText().toString();

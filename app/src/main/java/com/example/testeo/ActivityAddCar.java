@@ -79,9 +79,6 @@ public class ActivityAddCar extends AppCompatActivity {
                     Context context = getApplicationContext();
                     Coche carNew=addCar();
 
-                /**
-                 * VOY A HACER LA GUARRA
-                 */
                 List<Componente> componentes = carNew.getComponentes(context);
                 carNew.componentes=componentes;
                     int kmDiff;
