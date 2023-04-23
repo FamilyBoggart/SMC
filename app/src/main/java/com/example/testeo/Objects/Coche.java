@@ -161,8 +161,8 @@ public class Coche implements Serializable {
 
         registro.put("km",componente.getKm());
 
-        String condicion="matricula=?";
-        String[] argumentos={this.matricula};
+        String condicion="matricula=? AND componente=?";
+        String[] argumentos={this.matricula,componente.getNombre()};
 
         db.update("componentes",registro,condicion,argumentos);
         db.close();

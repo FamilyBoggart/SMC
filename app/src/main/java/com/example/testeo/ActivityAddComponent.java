@@ -1,6 +1,7 @@
 package com.example.testeo;
 
 import static com.example.testeo.R.id.btn_edit_component;
+import static com.example.testeo.R.id.c1_km;
 import static com.example.testeo.R.id.component_km;
 import static com.example.testeo.R.id.component_km_rev;
 import static com.example.testeo.R.id.component_name;
@@ -30,15 +31,11 @@ public class ActivityAddComponent extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_component);
 
-        Context context = getApplicationContext();
         Intent intent = getIntent();
         Coche car = (Coche) intent.getSerializableExtra("objCar"); //Debe vnir un coche siempre
-        List<Componente> carComponents = car.getComponentes(context);
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
         int kmDiff = Integer.parseInt(intent.getSerializableExtra("kmDiff").toString());
-        showComponent(carComponents);
-
-        System.out.println("diferencia = "+kmDiff);
+        showComponents(car,kmDiff);
 
         Button addCarButton = findViewById(component_btn_back_ui);
         addCarButton.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +49,7 @@ public class ActivityAddComponent extends AppCompatActivity
         Button editComponentButton = findViewById(btn_edit_component);
         editComponentButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                recogerData(carComponents,car);
+                recogerData(car);
                 Intent intent = new Intent(ActivityAddComponent.this, ActivityUI.class);
                 intent.putExtra("objUser", user);
                 startActivity(intent);
@@ -60,59 +57,34 @@ public class ActivityAddComponent extends AppCompatActivity
         });
     }
 
-    protected void showComponent(List<Componente> carComponents){
+    protected void showComponents(Coche car, int kmDiff) {
         Context context = getApplicationContext();
-        LinearLayout componentContainer = findViewById(R.id.component_container);
-        componentContainer.removeAllViews();
-
-        for(Componente component : carComponents ) {
-            View view = getLayoutInflater().inflate(R.layout.component_layout, null);
-
-            TextView componentName = view.findViewById(component_name);
-            componentName.setText(component.getNombre());
-
-            TextView componentKmRev = view.findViewById(component_km_rev);
-            componentKmRev.setText(String.valueOf(component.getKmRevision()));
-
-            EditText componentKm = new EditText(context);
-            componentKm.setHint(String.valueOf(component.getKm()));
-            componentKm.setId(View.generateViewId());
-            componentKm.setTag(String.valueOf(component.getNombre()));
-
-
-
-            componentContainer.addView(view);
+        List <Componente> componentes = car.getComponentes(context);
+        for (int i = 1; i<=11; i++) {
+            EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
+            Componente componente = componentes.get(i-1);
+            //Actualizar kmDiff
+            if(kmDiff!=0){
+              editarComponente(componente,componente.getKm()+kmDiff,context,car);
+            }
+            componentKm.setHint(String.valueOf(componente.getKm()));
         }
     }
 
 
-    protected void recogerData(List<Componente> carComponents,Coche car) {
-        Context context = getApplicationContext();
-        LinearLayout componentContainer = findViewById(R.id.component_container);
-        int numComponents = componentContainer.getChildCount();
-        for (int i = 0; i < numComponents; i++) {
-            View child = componentContainer.getChildAt(i);
-            if (child instanceof LinearLayout) {
-                LinearLayout componentLayout = (LinearLayout) child;
-                EditText componentKm = componentLayout.findViewById(R.id.component_km);
-                String kmStr = componentKm.getText().toString().trim();
-                if (!kmStr.isEmpty()) {
-                    String componentName = "";
-                    if (componentKm.getTag() != null) {
-                        componentName = componentKm.getTag().toString();
-                    }
 
-                    int km = Integer.parseInt(kmStr);
-                    for (Componente c : carComponents) {
-                        if (c.getNombre().equals(componentName)) {
-                            editarComponente(c, km, context, car);
-                            break;
-                        }
-                    }
-                }
+    protected void recogerData(Coche car) {
+        Context context = getApplicationContext();
+        for (int i = 1; i <= 11; i++) {
+            EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
+            String kmStr = componentKm.getText().toString().trim();
+            if (!kmStr.isEmpty()) {
+                int km = Integer.parseInt(kmStr);
+                editarComponente( car.componentes.get(i-1), km, context, car);
             }
         }
     }
+
     protected void editarComponente(Componente component,int km,Context context,Coche car){
         //POO
         component.setKm(km);
