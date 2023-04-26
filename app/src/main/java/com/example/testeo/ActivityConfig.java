@@ -69,35 +69,50 @@ public class ActivityConfig extends AppCompatActivity {
         TextView userMail = findViewById(R.id.config_edit_txt_mail);
         TextView userOldPassword = findViewById(R.id.edit_password_old);
         TextView userNewPassword = findViewById(R.id.edit_new_password);
-        TextView userConfirmPAssword = findViewById(R.id.edit_confirm_new_password);
+        TextView userConfirmPassword = findViewById(R.id.edit_confirm_new_password);
+        if (userMail.getText().toString().contains("@")){
+            if(!userOldPassword.getText().toString().equals("")){
+                if(userOldPassword.getText().toString().equals(user.getPassword())){
+                    if(userNewPassword.getText().toString().equals(userConfirmPassword.getText().toString())){
+                        if(!userNewPassword.getText().toString().equals("")){
+                            Context context = getApplicationContext();
+                            user.setNombre(userName.getText().toString());
+                            user.setEmail(userMail.getText().toString());
+                            user.setPassword(userNewPassword.getText().toString());
 
-        if(userOldPassword.getText().toString().equals(user.getPassword())){
-            if(userNewPassword.getText().toString().equals(userConfirmPAssword.getText().toString())){
-                Context context = getApplicationContext();
-                user.setNombre(userName.getText().toString());
-                user.setEmail(userMail.getText().toString());
-                user.setPassword(userNewPassword.getText().toString());
+                            user.modifyUser(context);
+                            return true;
+                        }
+                        else{
+                            errorConfig("Debes introducir una nueva contraseña");
+                            return false;}
 
-                user.modifyUser(context);
-                return true;
 
+                    }
+                    else{
+                        errorConfig("Las contraseñas introducidas son distintas");
+                        return false;
+                    }
+                }
+                else{
+                    errorConfig("La contraseña es incorrecta");
+                    return false;
+                }
             }
             else{
-                //Contraseñas distintas
-                TextView txtError = findViewById(R.id.config_txt_error);
-                txtError.setVisibility(View.VISIBLE);
-                txtError.setText("Las contraseñas introducidas son distintas");
+                errorConfig("Debes introducir la contraseña");
                 return false;
             }
-
         }
         else{
-            //Contraseña incorrecta
-            TextView txtError = findViewById(R.id.config_txt_error);
-            txtError.setVisibility(View.VISIBLE);
-            txtError.setText("La contraseña es incorrecta");
+            errorConfig("Debes introducir un mail valido");
             return false;
         }
 
+    }
+    public void errorConfig(String text){
+        TextView txtError = findViewById(R.id.config_txt_error);
+        txtError.setVisibility(View.VISIBLE);
+        txtError.setText(text);
     }
 }
