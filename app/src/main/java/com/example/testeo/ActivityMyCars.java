@@ -119,7 +119,6 @@ public class ActivityMyCars extends AppCompatActivity {
 
             carContainer.addView(view);
 
-
         }
     }
 }
