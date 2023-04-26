@@ -1,7 +1,12 @@
 package com.example.testeo;
 
+import static com.example.testeo.R.id.login_txt_email;
+import static com.example.testeo.R.id.login_txt_password;
 import static com.example.testeo.R.id.register_btn_login;
 import static com.example.testeo.R.id.register_btn_next;
+import static com.example.testeo.R.id.txt_register_confirm_password;
+import static com.example.testeo.R.id.txt_register_mail;
+import static com.example.testeo.R.id.txt_register_password;
 
 
 import android.content.Context;
@@ -11,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,11 +80,11 @@ public class ActivityRegister extends AppCompatActivity {
                         System.out.println("Registro creado exitosamente");
                         return true;
                     }
-                    else System.err.println("Mail escrito incorrectamente");
+                    else errorRegister("Mail escrito incorrectamente");
                     return false;
 
                 }
-                else System.err.println("Las password no coinciden");
+                else errorRegister("Las password no coinciden");
                 return false;
 
             }
@@ -96,6 +102,24 @@ public class ActivityRegister extends AppCompatActivity {
                 TextView view= findViewById(R.id.txt_register_mail);
                 String mail =view.getText().toString();
                 return mail.contains("@");
+            }
+
+            private void errorRegister(String text){
+                TextView txt_error = findViewById(R.id.txt_wrong_register);
+                txt_error.setVisibility(View.VISIBLE);
+                txt_error.setText(text);
+                if(text.equals("Mail escrito incorrectamente")){
+                    EditText removeEmail = findViewById(txt_register_mail);
+                    removeEmail.setText("");
+                }
+                else if(text.equals("Las password no coinciden"))
+                {
+                    EditText removePassword = findViewById(txt_register_password);
+                    removePassword.setText("");
+
+                    EditText removeConfirmPassword = findViewById(txt_register_confirm_password);
+                    removeConfirmPassword.setText("");
+                }
             }
         });
 

@@ -7,7 +7,7 @@
     <string name="user_success">Usuario creado correctamente</string>
     <string name="add_car_request">Necesitamos añadir el coche que usas</string>
 
-
+    <string name="wrong_credentials">Credenciales incorrectas</string>
     <string name="back_to_UI">Volver a inicio</string>
     <string name="back_to_car">Volver al coche</string>
 
