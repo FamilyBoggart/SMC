@@ -36,45 +36,50 @@ public class ActivityRegister extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityRegister.this, ActivityRegister2.class);
+
                 try{
                     Usuario user = new Usuario();
-                    registrar(user);
-                    String nombre= user.getNombre();
-                    System.out.println(nombre);
-                    intent.putExtra("objUser",user);
+                    if(registrar(user)){
+                        Intent intent = new Intent(ActivityRegister.this, ActivityRegister2.class);
+                        String nombre= user.getNombre();
+                        System.out.println(nombre);
+                        intent.putExtra("objUser",user);
+                        startActivity(intent);
+                    }
                 }
                 catch (Exception e){
                     Log.e("Error en la BD", "Hemos tenido un error "+e.getMessage());
                 }
-
-                startActivity(intent);
             }
 
-            private void registrar(Usuario user){
+            private boolean registrar(Usuario user){
                 Context context = getApplicationContext();
-
 
                 TextView view = null;
                 if(comprobacionPassword()) {
+                    if(comprobacionMail()){
+                        view = findViewById(R.id.txt_register_name);
+                        String name =view.getText().toString() ;
+                        user.setNombre(name);
 
+                        view = findViewById(R.id.txt_register_mail);
+                        String mail =view.getText().toString();
+                        user.setEmail(mail);
 
-                    view = findViewById(R.id.txt_register_name);
-                    String name =view.getText().toString() ;
-                    user.setNombre(name);
+                        view = findViewById(R.id.txt_register_password);
+                        String password = view.getText().toString();
+                        user.setPassword(password);
 
-                    view = findViewById(R.id.txt_register_mail);
-                    String mail =view.getText().toString();
-                    user.setEmail(mail);
+                        user.agregarUsuario(context);
+                        System.out.println("Registro creado exitosamente");
+                        return true;
+                    }
+                    else System.err.println("Mail escrito incorrectamente");
+                    return false;
 
-                    view = findViewById(R.id.txt_register_password);
-                    String password = view.getText().toString();
-                    user.setPassword(password);
-
-                    user.agregarUsuario(context);
-                    System.out.println("Registro creado exitosamente");
                 }
                 else System.err.println("Las password no coinciden");
+                return false;
 
             }
 
@@ -87,6 +92,11 @@ public class ActivityRegister extends AppCompatActivity {
                 return password.equals(confirmPassword);
             }
 
+            private boolean comprobacionMail(){
+                TextView view= findViewById(R.id.txt_register_mail);
+                String mail =view.getText().toString();
+                return mail.contains("@");
+            }
         });
 
 
