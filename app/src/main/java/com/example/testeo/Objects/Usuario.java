@@ -53,26 +53,11 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public List<Coche> getCoches(Context context) {
-
-        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
-        SQLiteDatabase db = admin.getWritableDatabase();
-
-        this.coches=admin.getCoches(this.getId());
-
-        db.close();
-        admin.close();
-
-        return this.coches;
-    }
-
-
     private void setId(int id){this.id=id;}
     public int getId(){
         return this.id;}
 
-    // metodos CRUD para Coches (read = getCoches)
-
+    // metodos CRUD para Coches
     public void agregarCoche(Coche coche,Context context) {
         //POO
         this.coches.add(coche);
@@ -102,6 +87,19 @@ public class Usuario implements Serializable {
 
 
 
+    }
+
+    public List<Coche> getCoches(Context context) {
+
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        this.coches=admin.getCoches(this.getId());
+
+        db.close();
+        admin.close();
+
+        return this.coches;
     }
 
     public void modificarCoche(Coche cocheNuevo,Context context) {
@@ -192,10 +190,7 @@ public class Usuario implements Serializable {
         DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
         setId(generarID(admin,this.email,this.password));
         this.setNombre(admin.getColumnValue("nombre",this.id));
-            //Falta añadir los coches
         admin.close();
-
-
     }
 
     public void modifyUser(Context context){

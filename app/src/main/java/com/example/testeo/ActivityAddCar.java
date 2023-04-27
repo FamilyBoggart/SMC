@@ -94,7 +94,7 @@ public class ActivityAddCar extends AppCompatActivity {
                             user.modificarCoche(carNew,context);}
                         else
                         {
-                            carNew.setComponentes(context);
+                            carNew.setComponentes();
                             user.agregarCoche(carNew,context);
                             kmDiff =carNew.getKm();}
 

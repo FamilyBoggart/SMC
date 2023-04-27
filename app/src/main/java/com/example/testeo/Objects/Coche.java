@@ -18,22 +18,15 @@ public class Coche implements Serializable {
         private int year_matriculacion;
         private int km;
         public List<Componente> componentes;
-    /*
-       Constructor para AddCar
-    */
-    public Coche (){
 
-    }
-    public Coche(String matricula,int km){
+    // Constructores
+        public Coche (){}
+        public Coche(String matricula,int km){
         this.matricula=matricula;
         this.km=km;
         this.componentes = new ArrayList<Componente>();
         }
-
-    /*
-        Constructor para la BBDD
-    */
-    public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
+        public Coche(String marca, String modelo, String matricula, int year_matriculacion, int km) {
             this.marca = marca;
             this.modelo = modelo;
             this.matricula = matricula;
@@ -47,7 +40,6 @@ public class Coche implements Serializable {
         public String getMarca() {
             return marca;
         }
-
         public void setMarca(String marca) {
             this.marca = marca;
         }
@@ -55,7 +47,6 @@ public class Coche implements Serializable {
         public String getModelo() {
             return modelo;
         }
-
         public void setModelo(String modelo) {
             this.modelo = modelo;
         }
@@ -63,7 +54,6 @@ public class Coche implements Serializable {
         public String getMatricula() {
             return matricula;
         }
-
         public void setMatricula(String matricula) {
             this.matricula = matricula;
         }
@@ -71,7 +61,6 @@ public class Coche implements Serializable {
         public int getYear_matriculacion() {
             return year_matriculacion;
         }
-
         public void setYear_matriculacion(int year_matriculacion) {
             this.year_matriculacion = year_matriculacion;
         }
@@ -79,11 +68,9 @@ public class Coche implements Serializable {
         public int getKm() {
             return this.km;
         }
-
         public void setKm(int km) {
             this.km = km;
         }
-
 
         public List<Componente> getComponentes(Context context) {
 
@@ -99,8 +86,7 @@ public class Coche implements Serializable {
 
             return this.componentes;
         }
-
-        public void setComponentes(Context context) {
+        public void setComponentes() {
 
             Componente[] componentesArray = {
                 new Componente("Aceite de motor", 10000, this.km,this.matricula),
@@ -122,7 +108,7 @@ public class Coche implements Serializable {
             }
         }
 
-    public int getITV(){
+        public int getITV(){
         /**
          * 1º: 4 años
          * 4-10 años: cada 2 años
@@ -144,16 +130,9 @@ public class Coche implements Serializable {
             return(Math.max(itv1,yearNow));
         }
     }
+
         //Metodos CRUD de componentes (Read = getComponents)
-    public void editarComponente(Componente componente) {
-            for (int i = 0; i < this.componentes.size(); i++) {
-                if (this.componentes.get(i).getNombre().equals(componente.getNombre())) {
-                    this.componentes.set(i, componente);
-                    break;
-                }
-            }
-        }
-    public void registrarComponente(Context context,Componente componente){
+        public void registrarComponente(Context context,Componente componente){
         DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
         SQLiteDatabase db = admin.getWritableDatabase();
         ContentValues registro = new ContentValues();
@@ -168,8 +147,7 @@ public class Coche implements Serializable {
         db.close();
         admin.close();
     }
-
-    public void actualizarComponente(Context context,Componente componente){
+        public void actualizarComponente(Context context,Componente componente){
         ContentValues registro = new ContentValues();
         DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
         SQLiteDatabase db = admin.getWritableDatabase();

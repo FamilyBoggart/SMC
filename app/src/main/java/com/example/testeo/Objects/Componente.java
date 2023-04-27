@@ -21,7 +21,6 @@ public class Componente implements Serializable {
     public int getKm() {
         return km;
     }
-
     public void setKm(int km) {
         this.km = km;
     }
@@ -29,7 +28,6 @@ public class Componente implements Serializable {
     public int getKmRevision() {
         return km_revision;
     }
-
     public void setKmRevision(int km_revision) {
         this.km_revision = km_revision;
     }
@@ -37,7 +35,6 @@ public class Componente implements Serializable {
     public String getNombre() {
         return this.nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
