@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.testeo.DB_SQLite;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -122,10 +119,6 @@ public class Coche implements Serializable {
             }
         }
 
-        public void editComponente(){}
-
-
-    //Metodos para la ITV
     public int getITV(){
         /**
          * 1º: 4 años
@@ -148,7 +141,7 @@ public class Coche implements Serializable {
             return(Math.max(itv1,yearNow));
         }
     }
-        //Metodos CRUD de componentes
+        //Metodos CRUD de componentes (Read = getComponents)
     public void editarComponente(Componente componente) {
             for (int i = 0; i < this.componentes.size(); i++) {
                 if (this.componentes.get(i).getNombre().equals(componente.getNombre())) {

@@ -57,7 +57,12 @@ public class DB_SQLite extends SQLiteOpenHelper {
         return id;
     }
 
-
+    /**
+     * Este metodo sirve para obtener un único valor en la BBDD
+     * @param columnName
+     * @param userID
+     * @return
+     */
     @SuppressLint("Range")
     public String getColumnValue(String columnName, int userID){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -74,6 +79,11 @@ public class DB_SQLite extends SQLiteOpenHelper {
         return columnValue;
     }
 
+    /**
+     * Este metood devuelve un ArrayList de los coches asociados a un ususario
+     * @param userId: el id del ususario
+     * @return
+     */
     public ArrayList<Coche> getCoches(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Coche> coches = new ArrayList<>();
@@ -93,6 +103,11 @@ public class DB_SQLite extends SQLiteOpenHelper {
         return coches;
     }
 
+    /**
+     * Este metodo devuelve el arraylist de los componentes asociados aun coche
+     * @param matricula: la matricula identificativa del coche
+     * @return
+     */
     public ArrayList<Componente> getComponentes(String matricula) {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Componente> componentes = new ArrayList<>();
