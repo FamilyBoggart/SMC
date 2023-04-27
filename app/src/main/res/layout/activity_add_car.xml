@@ -104,7 +104,7 @@
                     android:layout_marginEnd="99dp"
                     android:layout_marginBottom="46dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:inputType="numberSigned"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/switch1"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -116,7 +116,7 @@
                     android:layout_marginEnd="99dp"
                     android:layout_marginBottom="46dp"
                     android:ems="10"
-                    android:inputType="date"
+                    android:inputType="numberSigned"
                     app:layout_constraintBottom_toTopOf="@+id/add_car_txt_km"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -203,6 +203,19 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_add_car_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    android:textColor="#ff0000"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

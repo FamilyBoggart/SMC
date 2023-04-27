@@ -11,6 +11,7 @@ import static com.example.testeo.R.id.btn_removecar;
 import static com.example.testeo.R.id.mycars_btn_add_car;
 import static com.example.testeo.R.id.switch1;
 import static com.example.testeo.R.id.txt_add_car;
+import static com.example.testeo.R.id.txt_add_car_error;
 
 import android.content.Context;
 import android.content.Intent;
@@ -78,39 +79,43 @@ public class ActivityAddCar extends AppCompatActivity {
 
                     Context context = getApplicationContext();
                     Coche carNew=addCar();
-
-                List<Componente> componentes = carNew.getComponentes(context);
-                carNew.componentes=componentes;
-                    int kmDiff;
-                    //Damos por hecho que si cambia la matricula se trata de un coche distinto
-                    if(carOld!=null&&carOld.getMatricula().equals(carNew.getMatricula()))
-                    {   kmDiff = carNew.getKm()-carOld.getKm();
-                        user.modificarCoche(carNew,context);}
-                    else
-                    {
-                        carNew.setComponentes(context);
-                        user.agregarCoche(carNew,context);
-                        kmDiff =carNew.getKm();}
-
-
-                    Switch component = findViewById(switch1);
-                    if(component.isChecked()){
-                        Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
-
-                        //Extras
-                        intent.putExtra("objUser",user);
-                        if(carOld!=null){intent.putExtra("objCar",carOld);}
-                        else{intent.putExtra("objCar",carNew);}
-                        intent.putExtra("kmDiff",kmDiff);
-
-                        startActivity(intent);}
-                    else{
-                        Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
-                        intent.putExtra("objUser",user);
-                        startActivity(intent);
+                    if(carNew==null){
+                                TextView txterror = findViewById(txt_add_car_error);
+                                txterror.setVisibility(View.VISIBLE);
+                                txterror.setText("Necesitas añadir una matricula y un año de matriculacion ");
                     }
+                    else{
+                        List<Componente> componentes = carNew.getComponentes(context);
+                        carNew.componentes=componentes;
+                        int kmDiff;
+                        //Damos por hecho que si cambia la matricula se trata de un coche distinto
+                        if(carOld!=null&&carOld.getMatricula().equals(carNew.getMatricula()))
+                        {   kmDiff = carNew.getKm()-carOld.getKm();
+                            user.modificarCoche(carNew,context);}
+                        else
+                        {
+                            carNew.setComponentes(context);
+                            user.agregarCoche(carNew,context);
+                            kmDiff =carNew.getKm();}
 
 
+                        Switch component = findViewById(switch1);
+                        if(component.isChecked()){
+                            Intent intent = new Intent(ActivityAddCar.this, ActivityAddComponent.class);
+
+                            //Extras
+                            intent.putExtra("objUser",user);
+                            if(carOld!=null){intent.putExtra("objCar",carOld);}
+                            else{intent.putExtra("objCar",carNew);}
+                            intent.putExtra("kmDiff",kmDiff);
+
+                            startActivity(intent);}
+                        else{
+                            Intent intent = new Intent(ActivityAddCar.this, ActivityUI.class);
+                            intent.putExtra("objUser",user);
+                            startActivity(intent);
+                        }
+                    }
             }
         });
     }
@@ -119,29 +124,40 @@ public class ActivityAddCar extends AppCompatActivity {
 
         EditText view;
 
+        boolean comprobacion=true;
+
         view = findViewById(add_car_txt_matricula);
-        String matricula =view.getText().toString();
+        if(view==null)comprobacion=false;
+        String matricula =view.getText().toString().trim();
 
         view = findViewById(add_car_txt_km);
-        int km =Integer.parseInt(view.getText().toString());
+        int km=0;
+        if(view!=null && !view.getText().toString().isEmpty()){
+            km =Integer.parseInt(view.getText().toString());
+        }
 
+        if(comprobacion){
+            Coche car = new Coche(matricula,km);
 
-        Coche car = new Coche(matricula,km);
+            view = findViewById(add_car_txt_marca);
+            String marca =view.getText().toString();
+            car.setMarca(marca);
 
+            view = findViewById(add_car_txt_modelo);
+            String modelo =view.getText().toString();
+            car.setModelo(modelo);
 
-        view = findViewById(add_car_txt_marca);
-        String marca =view.getText().toString();
-        car.setMarca(marca);
+            view = findViewById(add_car_txt_year_mat);
+            if(view!=null){
+                int year =Integer.parseInt(view.getText().toString());
+                car.setYear_matriculacion(year);
+            }
+            else{return null;}
 
-        view = findViewById(add_car_txt_modelo);
-        String modelo =view.getText().toString();
-        car.setModelo(modelo);
+            return car;
+        }
+        else{return null;}
 
-        view = findViewById(add_car_txt_year_mat);
-        int year =Integer.parseInt(view.getText().toString());
-        car.setYear_matriculacion(year);
-
-        return car;
     }
     public void carData(Coche coche){
         if(coche != null){

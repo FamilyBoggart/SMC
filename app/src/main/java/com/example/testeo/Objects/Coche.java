@@ -21,6 +21,9 @@ public class Coche implements Serializable {
     /*
        Constructor para AddCar
     */
+    public Coche (){
+
+    }
     public Coche(String matricula,int km){
         this.matricula=matricula;
         this.km=km;
