@@ -161,8 +161,9 @@ public class Usuario implements Serializable {
         }
     }
 
-    //metodos para acceso a la base de Datos
 
+
+    //metodos para acceso a la base de Datos (Los Usuarios no se borran de la BBDD)
 
     public void agregarUsuario(Context context) {
         ContentValues registro = new ContentValues();
