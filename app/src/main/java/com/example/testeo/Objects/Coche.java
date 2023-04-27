@@ -8,7 +8,10 @@ import com.example.testeo.DB_SQLite;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Coche implements Serializable {
@@ -124,7 +127,26 @@ public class Coche implements Serializable {
 
     //Metodos para la ITV
     public int getITV(){
+        /**
+         * 1º: 4 años
+         * 4-10 años: cada 2 años
+         * >10 años: cada año
+         */
+        Calendar cal = Calendar.getInstance();
+        int yearNow= cal.get(Calendar.YEAR);
+        int diff = yearNow-year_matriculacion;
+
+        if(diff<4){
             return year_matriculacion+4;
+        }
+        else if(diff==4||diff>=10){return  yearNow;}
+        else {
+            int itv1 =year_matriculacion+4;
+            while(yearNow>itv1){
+                itv1+=2;
+            }
+            return(Math.max(itv1,yearNow));
+        }
     }
         //Metodos CRUD de componentes
     public void editarComponente(Componente componente) {
