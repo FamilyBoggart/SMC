@@ -72,20 +72,7 @@ public class Coche implements Serializable {
             this.km = km;
         }
 
-        public List<Componente> getComponentes(Context context) {
 
-            DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
-            SQLiteDatabase db = admin.getWritableDatabase();
-
-            this.componentes=admin.getComponentes(this.matricula);
-
-            db.close();
-            admin.close();
-
-
-
-            return this.componentes;
-        }
         public void setComponentes() {
 
             Componente[] componentesArray = {
@@ -131,7 +118,7 @@ public class Coche implements Serializable {
         }
     }
 
-        //Metodos CRUD de componentes (Read = getComponents)
+        //Metodos CRUD de componentes (No hay DELETE)
         public void registrarComponente(Context context,Componente componente){
         DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
         SQLiteDatabase db = admin.getWritableDatabase();
@@ -146,6 +133,20 @@ public class Coche implements Serializable {
         db.insert("componentes",null,registro);
         db.close();
         admin.close();
+    }
+        public List<Componente> getComponentes(Context context) {
+
+        DB_SQLite admin = new DB_SQLite(context,"administracion",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        this.componentes=admin.getComponentes(this.matricula);
+
+        db.close();
+        admin.close();
+
+
+
+        return this.componentes;
     }
         public void actualizarComponente(Context context,Componente componente){
         ContentValues registro = new ContentValues();
