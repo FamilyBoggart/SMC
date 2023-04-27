@@ -59,21 +59,8 @@ public class ActivityAddComponent extends AppCompatActivity
 
         if(componentes.isEmpty()){System.out.println("La lista de componentes esta vacia");}
         else{
-/*
-            for (int i = 1; i<=11; i++) {
-                EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
-                Componente componente = componentes.get(i-1);
-                //Actualizar kmDiff
-                if(kmDiff!=0){
-                    editarComponente(componente,componente.getKm()+kmDiff,context,car);
-                }
-                componentKm.setHint(String.valueOf(componente.getKm()));
-            }
-*/
-
            eachComponent(componentes,kmDiff,car);
         }
-
     }
 
     public void eachComponent(List <Componente> components,int kmDiff,Coche car){
@@ -81,6 +68,7 @@ public class ActivityAddComponent extends AppCompatActivity
         Context context = getApplicationContext();
         componentContainer.setVisibility(View.VISIBLE);
         componentContainer.removeAllViews();
+        int i=0;
 
         for(Componente componente:components){
             View view = getLayoutInflater().inflate(R.layout.component_layout, null);
@@ -97,22 +85,15 @@ public class ActivityAddComponent extends AppCompatActivity
             }
             componentKm.setHint(String.valueOf(componente.getKm()));
 
+            //Asignacion de ID
+            String editTextId = "component_" + i + "_km";
+            int resId = getResources().getIdentifier(editTextId, "id", getPackageName());
+            componentKm.setId(resId);
+            i++;
+
             componentContainer.addView(view);
         }
 
-    }
-
-
-    protected void recogerData(Coche car) {
-        Context context = getApplicationContext();
-        for (int i = 1; i <= 11; i++) {
-            EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
-            String kmStr = componentKm.getText().toString().trim();
-            if (!kmStr.isEmpty()) {
-                int km = Integer.parseInt(kmStr);
-                editarComponente( car.componentes.get(i-1), km, context, car);
-            }
-        }
     }
 
     protected void editarComponente(Componente component,int km,Context context,Coche car){
@@ -121,4 +102,23 @@ public class ActivityAddComponent extends AppCompatActivity
 
         //BBDD
         car.actualizarComponente(context,component);}
+
+
+
+    protected void recogerData(Coche car) {
+        /*
+        Context context = getApplicationContext();
+        List<Componente> componentes = car.getComponentes(context);
+        for (Componente componente:componentes  ) {
+           EditText componentKm = findViewById(getResources().getIdentifier(componente.getIdEditText(), "id", getPackageName());
+            String kmStr = componentKm.getText().toString().trim();
+            if (!kmStr.isEmpty()) {
+                int km = Integer.parseInt(kmStr);
+                editarComponente( car.componentes.get(i-1), km, context, car);
+            }
+        }
+
+         */
+    }
+
 }
