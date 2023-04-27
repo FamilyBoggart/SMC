@@ -2,6 +2,7 @@ package com.example.testeo;
 
 import static com.example.testeo.R.id.btn_edit_component;
 import static com.example.testeo.R.id.component_btn_back_ui;
+import static com.example.testeo.R.id.component_name;
 
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class ActivityAddComponent extends AppCompatActivity
         Coche car = (Coche) intent.getSerializableExtra("objCar"); //Debe vnir un coche siempre
         Usuario user = (Usuario) intent.getSerializableExtra("objUser");
         int kmDiff = Integer.parseInt(intent.getSerializableExtra("kmDiff").toString());
-        showComponents(car,kmDiff);
+        int []ids =showComponents(car,kmDiff);
 
         Button addCarButton = findViewById(component_btn_back_ui);
         addCarButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,7 @@ public class ActivityAddComponent extends AppCompatActivity
         Button editComponentButton = findViewById(btn_edit_component);
         editComponentButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                recogerData(car);
+                recogerData(ids,car);
                 Intent intent = new Intent(ActivityAddComponent.this, ActivityUI.class);
                 intent.putExtra("objUser", user);
                 startActivity(intent);
@@ -53,23 +54,24 @@ public class ActivityAddComponent extends AppCompatActivity
         });
     }
 
-    protected void showComponents(Coche car, int kmDiff) {
+    protected int[] showComponents(Coche car, int kmDiff) {
         Context context = getApplicationContext();
         List <Componente> componentes = car.getComponentes(context);
-
+        int [] ids = new int[componentes.size()];
         if(componentes.isEmpty()){System.out.println("La lista de componentes esta vacia");}
         else{
-           eachComponent(componentes,kmDiff,car);
+          ids= eachComponent(componentes,kmDiff,car);
         }
+        return ids;
     }
 
-    public void eachComponent(List <Componente> components,int kmDiff,Coche car){
+    public int[] eachComponent(List <Componente> components,int kmDiff,Coche car){
         LinearLayout componentContainer = findViewById(R.id.component_container);
         Context context = getApplicationContext();
         componentContainer.setVisibility(View.VISIBLE);
         componentContainer.removeAllViews();
+        int []ids=new int[components.size()];
         int i=0;
-
         for(Componente componente:components){
             View view = getLayoutInflater().inflate(R.layout.component_layout, null);
 
@@ -86,14 +88,16 @@ public class ActivityAddComponent extends AppCompatActivity
             componentKm.setHint(String.valueOf(componente.getKm()));
 
             //Asignacion de ID
-            String editTextId = "component_" + i + "_km";
-            int resId = getResources().getIdentifier(editTextId, "id", getPackageName());
-            componentKm.setId(resId);
+            int editTextId = View.generateViewId();
+            componentKm.setId(editTextId);
+            ids[i]=editTextId;
             i++;
 
             componentContainer.addView(view);
+            System.out.println(ids[i-1]);
         }
 
+        return ids;
     }
 
     protected void editarComponente(Componente component,int km,Context context,Coche car){
@@ -105,20 +109,20 @@ public class ActivityAddComponent extends AppCompatActivity
 
 
 
-    protected void recogerData(Coche car) {
-        /*
+    public void recogerData(int[] ids,Coche car) {
         Context context = getApplicationContext();
-        List<Componente> componentes = car.getComponentes(context);
-        for (Componente componente:componentes  ) {
-           EditText componentKm = findViewById(getResources().getIdentifier(componente.getIdEditText(), "id", getPackageName());
-            String kmStr = componentKm.getText().toString().trim();
-            if (!kmStr.isEmpty()) {
-                int km = Integer.parseInt(kmStr);
-                editarComponente( car.componentes.get(i-1), km, context, car);
+        List <Componente> componentes =car.getComponentes(context);
+        for (int i = 0; i < ids.length; i++) {
+            EditText editText = findViewById(ids[i]);
+            String text = editText.getText().toString();
+            if (!text.isEmpty()) {
+                Componente componente = componentes.get(i);
+                int km = Integer.parseInt(text);
+                editarComponente(componente, km, getApplicationContext(), car);
             }
         }
-
-         */
     }
+
+
 
 }
