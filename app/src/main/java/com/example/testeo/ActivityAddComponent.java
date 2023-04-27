@@ -1,10 +1,6 @@
 package com.example.testeo;
 
 import static com.example.testeo.R.id.btn_edit_component;
-import static com.example.testeo.R.id.c1_km;
-import static com.example.testeo.R.id.component_km;
-import static com.example.testeo.R.id.component_km_rev;
-import static com.example.testeo.R.id.component_name;
 import static com.example.testeo.R.id.component_btn_back_ui;
 
 import android.content.Context;
@@ -60,17 +56,51 @@ public class ActivityAddComponent extends AppCompatActivity
     protected void showComponents(Coche car, int kmDiff) {
         Context context = getApplicationContext();
         List <Componente> componentes = car.getComponentes(context);
-        for (int i = 1; i<=11; i++) {
-            EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
-            Componente componente = componentes.get(i-1);
-            //Actualizar kmDiff
-            if(kmDiff!=0){
-              editarComponente(componente,componente.getKm()+kmDiff,context,car);
+
+        if(componentes.isEmpty()){System.out.println("La lista de componentes esta vacia");}
+        else{
+/*
+            for (int i = 1; i<=11; i++) {
+                EditText componentKm = findViewById(getResources().getIdentifier("c" + i + "_km", "id", getPackageName()));
+                Componente componente = componentes.get(i-1);
+                //Actualizar kmDiff
+                if(kmDiff!=0){
+                    editarComponente(componente,componente.getKm()+kmDiff,context,car);
+                }
+                componentKm.setHint(String.valueOf(componente.getKm()));
             }
-            componentKm.setHint(String.valueOf(componente.getKm()));
+*/
+
+           eachComponent(componentes,kmDiff,car);
         }
+
     }
 
+    public void eachComponent(List <Componente> components,int kmDiff,Coche car){
+        LinearLayout componentContainer = findViewById(R.id.component_container);
+        Context context = getApplicationContext();
+        componentContainer.setVisibility(View.VISIBLE);
+        componentContainer.removeAllViews();
+
+        for(Componente componente:components){
+            View view = getLayoutInflater().inflate(R.layout.component_layout, null);
+
+            TextView componentName = view.findViewById(R.id.component_name);
+            componentName.setText(componente.getNombre());
+
+            TextView componentKmRev = view.findViewById(R.id.component_km_rev);
+            componentKmRev.setText(String.valueOf(componente.getKmRevision()));
+
+            EditText componentKm = view.findViewById(R.id.component_km);
+            if(kmDiff!=0){
+                editarComponente(componente,componente.getKm()+kmDiff,context,car);
+            }
+            componentKm.setHint(String.valueOf(componente.getKm()));
+
+            componentContainer.addView(view);
+        }
+
+    }
 
 
     protected void recogerData(Coche car) {
