@@ -83,10 +83,6 @@ public class Usuario implements Serializable {
         for(Componente componente : coche.componentes){
                 coche.registrarComponente(context,componente);
         }
-
-
-
-
     }
 
     public List<Coche> getCoches(Context context) {

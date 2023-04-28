@@ -17,19 +17,22 @@ import java.util.ArrayList;
 
 public class DB_SQLite extends SQLiteOpenHelper {
 
-
-
     public DB_SQLite(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super((Context) context, name, factory, version);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE usuarios(id INTEGER PRIMARY KEY ,email VARCHAR(40) NOT NULL,password varchar(20) NOT NULL,nombre VARCHAR(60) NOT NULL)");
-        db.execSQL("CREATE TABLE coches (marca VARCHAR(30),modelo VARCHAR(30),matricula varchar(10) PRIMARY KEY NOT NULL,año_matriculacion YEAR," +
-                    "owner_name varchar(60),owner_id int,km INT DEFAULT 0,CONSTRAINT fk_id FOREIGN KEY (owner_id) REFERENCES usuarios(id))");
-        db.execSQL("CREATE TABLE componentes(matricula VARCHAR(10),componente VARCHAR(60),km int,km_revision int,CONSTRAINT fk_matricula FOREIGN KEY (matricula) REFERENCES coches(matricula));");
+
+        db.execSQL("CREATE TABLE usuarios(id INTEGER PRIMARY KEY ,email VARCHAR(40) NOT NULL,password varchar(20) NOT NULL," +
+                "nombre VARCHAR(60) NOT NULL)");
+
+        db.execSQL("CREATE TABLE coches (marca VARCHAR(30),modelo VARCHAR(30),matricula varchar(10) PRIMARY KEY NOT NULL," +
+                "año_matriculacion YEAR,owner_name varchar(60),owner_id int,km INT DEFAULT 0," +
+                "CONSTRAINT fk_id FOREIGN KEY (owner_id) REFERENCES usuarios(id))");
+
+        db.execSQL("CREATE TABLE componentes(matricula VARCHAR(10),componente VARCHAR(60),km int," +
+                "km_revision int,CONSTRAINT fk_matricula FOREIGN KEY (matricula) REFERENCES coches(matricula));");
     }
 
     @Override
@@ -37,10 +40,14 @@ public class DB_SQLite extends SQLiteOpenHelper {
 
     }
 
-
+    /**
+     * Este metodo obtiene la ID del usuario cuando este se loguea, en base a su mail y password
+     * @param email
+     * @param password
+     * @return
+     */
     @SuppressLint("Range")
-    public int getID(String email, String password)
-    {
+    public int getID(String email, String password){
         SQLiteDatabase db = this.getReadableDatabase();
         int id=-1;
         String[] columnas = {"id"};

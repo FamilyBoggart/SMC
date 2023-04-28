@@ -191,13 +191,13 @@
                             android:id="@+id/config_txt_error"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Error"
                             app:layout_constraintBottom_toTopOf="@+id/btn_change_password"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             android:textStyle="bold"
                             android:textColor="@color/red"
-                            android:visibility="visible"
+                            android:visibility="invisible"
                             app:layout_constraintTop_toBottomOf="@+id/edit_confirm_new_password" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

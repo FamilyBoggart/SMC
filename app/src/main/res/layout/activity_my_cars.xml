@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sin coches actualmente"
                     android:layout_gravity="center"
-                    android:visibility="visible"></TextView>
+                    android:visibility="invisible"></TextView>
 
                 <ScrollView
                     android:layout_width="match_parent"
