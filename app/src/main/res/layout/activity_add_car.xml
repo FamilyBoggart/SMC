@@ -188,16 +188,17 @@
                     android:text="KM"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/switch1"
+                    app:layout_constraintBottom_toTopOf="@+id/customComponent"
                     app:layout_constraintEnd_toStartOf="@+id/add_car_txt_km"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-                <Switch
-                    android:id="@+id/switch1"
+                <Button
+                    android:id="@+id/customComponent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="60dp"
+                    android:backgroundTint = #FBE3B3
                     android:text="Personalizar componentes"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +216,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switch1" />
+                    app:layout_constraintTop_toBottomOf="@+id/customComponent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
